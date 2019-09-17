@@ -5,14 +5,12 @@ import ExAstris.Block.BlockStronglyCompressedStone;
 import net.minecraft.block.Block;
 
 public class RotaryCraft {
-	
-	public static Block stronglyCompressedStone()
-	{
+
+	public static Block stronglyCompressedStone() {
 		return new BlockStronglyCompressedStone();
 	}
-	
-	public static Block qStronglyCompressedStone()
-	{
+
+	public static Block qStronglyCompressedStone() {
 		return new BlockQStronglyCompressedStone();
 	}
 

@@ -1,48 +1,45 @@
 package ExAstris.Bridge;
 
 import ExAstris.Data.ModData;
-import net.minecraft.block.Block;
 import cpw.mods.fml.common.registry.GameRegistry;
 import exnihilo.blocks.ores.BlockOre;
-import exnihilo.compatibility.OreList.OreDimension;
 import exnihilo.registries.HammerRegistry;
 import exnihilo.registries.OreRegistry;
 import exnihilo.registries.helpers.Color;
+import net.minecraft.block.Block;
 
 public class DraconicEvolution {
-	
-	
-	public static void init()
-	{
+
+
+	public static void init() {
 		addOres();
 		addSiftingRegistry();
 		addChestSmeltingDoubling();
 	}
-	
-	private static void addOres()
-	{
-		OreRegistry.createEnderOre("draconiumdust", new Color("BF3FBF"), ModData.oreDraconiumChance, GameRegistry.findItem("DraconicEvolution","draconiumDust"), true);
+
+	private static void addOres() {
+		OreRegistry.createEnderOre("draconiumdust", new Color("BF3FBF"), ModData.oreDraconiumChance, GameRegistry.findItem("DraconicEvolution", "draconiumDust"), true);
 	}
-	
-	public static void addSiftingRegistry()
-	{
-		
-		HammerRegistry.register(GameRegistry.findBlock("exastris", "draconiumdust_dust"), 0, GameRegistry.findItem("DraconicEvolution","draconiumDust"), 0, 0.8f, 0);
-		HammerRegistry.register(GameRegistry.findBlock("exastris", "draconiumdust_dust"), 0, GameRegistry.findItem("DraconicEvolution","draconiumDust"), 0, 0.1f, 0.1f);
+
+	public static void addSiftingRegistry() {
+
+		HammerRegistry.register(GameRegistry.findBlock("exastris", "draconiumdust_dust"), 0, GameRegistry.findItem("DraconicEvolution", "draconiumDust"), 0, 0.8f, 0);
+		HammerRegistry.register(GameRegistry.findBlock("exastris", "draconiumdust_dust"), 0, GameRegistry.findItem("DraconicEvolution", "draconiumDust"), 0, 0.1f, 0.1f);
 	}
-	
-	public static void addChestSmeltingDoubling()
-	{
-		for (BlockOre b : OreRegistry.gravelTable.values())
+
+	public static void addChestSmeltingDoubling() {
+		for(BlockOre b : OreRegistry.gravelTable.values()) {
 			addDraconicDoubling(b);
-		for (BlockOre b : OreRegistry.sandTable.values())
+		}
+		for(BlockOre b : OreRegistry.sandTable.values()) {
 			addDraconicDoubling(b);
-		for (BlockOre b : OreRegistry.dustTable.values())
+		}
+		for(BlockOre b : OreRegistry.dustTable.values()) {
 			addDraconicDoubling(b);
+		}
 	}
-	
-	public static void addDraconicDoubling(Block block)
-	{
+
+	public static void addDraconicDoubling(Block block) {
 		// DISABLED FOR NOW
 		/*ItemStack furnaceOutput = FurnaceRecipes.smelting().getSmeltingResult(new ItemStack(block));
 		if (furnaceOutput != null)

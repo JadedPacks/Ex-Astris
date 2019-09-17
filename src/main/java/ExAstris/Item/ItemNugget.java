@@ -8,31 +8,26 @@ import net.minecraft.item.ItemStack;
 
 public class ItemNugget extends Item {
 
-	public ItemNugget()
-	{
+	public ItemNugget() {
 		super();
-		
+
 	}
-	
-	
+
+
 	@Override
-	public String getUnlocalizedName()
-	{
+	public String getUnlocalizedName() {
 		return ModData.ID + "." + ItemData.NUGGET_KEY;
 	}
-	
+
 	@Override
-	public String getUnlocalizedName(ItemStack item)
-	{
+	public String getUnlocalizedName(ItemStack item) {
 		return ModData.ID + "." + ItemData.NUGGET_KEY;
 	}
-	
-	
-	
+
+
 	@Override
-	public void registerIcons(IIconRegister register)
-	{
-			this.itemIcon = register.registerIcon(ModData.TEXTURE_LOCATION+":NuggetElectricalSteel");
+	public void registerIcons(IIconRegister register) {
+		this.itemIcon = register.registerIcon(ModData.TEXTURE_LOCATION + ":NuggetElectricalSteel");
 	}
-	
+
 }

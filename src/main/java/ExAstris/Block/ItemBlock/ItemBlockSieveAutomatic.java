@@ -11,15 +11,13 @@ public class ItemBlockSieveAutomatic extends ItemBlock {
 		super(block);
 		setHasSubtypes(true);
 	}
-	
-	public String getUnlocalizedName(ItemStack itemstack)
-	{
+
+	public String getUnlocalizedName(ItemStack itemstack) {
 		return ModData.ID + "." + BlockData.SIEVE_AUTOMATIC_UNLOCALIZED_NAME;
 	}
-	
+
 	@Override
-	public int getMetadata(int meta)
-	{
+	public int getMetadata(int meta) {
 		return meta;
 	}
 }

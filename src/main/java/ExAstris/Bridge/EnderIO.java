@@ -1,12 +1,11 @@
 package ExAstris.Bridge;
 
-import net.minecraft.item.Item;
 import ExAstris.Item.ItemNugget;
+import net.minecraft.item.Item;
 
 public class EnderIO {
-	
-	public static Item electricalNugget()
-	{
+
+	public static Item electricalNugget() {
 		return new ItemNugget();
 	}
 

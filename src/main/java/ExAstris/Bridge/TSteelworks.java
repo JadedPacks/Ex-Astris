@@ -1,12 +1,12 @@
 package ExAstris.Bridge;
 
+import ExAstris.Data.ModData;
+import ExAstris.Data.MoltenData;
+import ExAstris.ExAstrisBlock;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
-import ExAstris.ExAstrisBlock;
-import ExAstris.Data.ModData;
-import ExAstris.Data.MoltenData;
 import tconstruct.smeltery.TinkerSmeltery;
 import toops.tsteelworks.api.PluginFactory;
 import toops.tsteelworks.api.highoven.ISmeltingRegistry;
@@ -15,18 +15,16 @@ import toops.tsteelworks.api.highoven.ISmeltingRegistry;
 public class TSteelworks {
 
 	private static ISmeltingRegistry Instance;
-	public static void Initialize()
-	{
+
+	public static void Initialize() {
 		Instance = (ISmeltingRegistry) PluginFactory.getInstance(ISmeltingRegistry.class);
-		if(ModData.allowSteelworksMelting)
-		{
+		if(ModData.allowSteelworksMelting) {
 			addMeltingRecipe();
 		}
 	}
-	public static void addMeltingRecipe()
-	{
-		if(Loader.isModLoaded("TConstruct") && ModData.allowAddTConstructNetherOre)
-		{
+
+	public static void addMeltingRecipe() {
+		if(Loader.isModLoaded("TConstruct") && ModData.allowAddTConstructNetherOre) {
 			Instance.addMeltable(new ItemStack(ExAstrisBlock.cobaltOreBlock, 1, 2), true, new FluidStack(TinkerSmeltery.moltenCobaltFluid, MoltenData.ingotCostHighoven), 650);
 			Instance.addMeltable(new ItemStack(ExAstrisBlock.arditeOreBlock, 1, 2), true, new FluidStack(TinkerSmeltery.moltenArditeFluid, MoltenData.ingotCostHighoven), 650);
 		}
@@ -43,9 +41,8 @@ public class TSteelworks {
 
 	}
 
-	public static void addMeltableOre(ItemStack stack, FluidStack output, int temperature)
-	{
-		if (stack != null && output != null && stack.getItem() != null && output.getFluid() != null) //More null checks than you can poke a stick at
+	public static void addMeltableOre(ItemStack stack, FluidStack output, int temperature) {
+		if(stack != null && output != null && stack.getItem() != null && output.getFluid() != null) //More null checks than you can poke a stick at
 		{
 			Instance.addMeltable(stack, true, output, temperature);
 		}

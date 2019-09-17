@@ -1,34 +1,25 @@
 package ExAstris.Util;
 
-import java.util.HashMap;
-
+import exnihilo.registries.SieveRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
-import exnihilo.registries.SieveRegistry;
+
+import java.util.HashMap;
 
 public class SieveUtils {
 
-private static HashMap<ItemInfo, Boolean> registryCache = new HashMap<ItemInfo, Boolean>();
-	
-	public static boolean registered(ItemStack item)
-	{
+	private static HashMap<ItemInfo, Boolean> registryCache = new HashMap<ItemInfo, Boolean>();
+
+	public static boolean registered(ItemStack item) {
 		Boolean allowed = registryCache.get(new ItemInfo(item));
-		if (allowed == null)
-		{
-			if (SieveRegistry.Contains(Block.getBlockFromItem(item.getItem()), item.getItemDamage())) 
-			{
+		if(allowed == null) {
+			if(SieveRegistry.registered(Block.getBlockFromItem(item.getItem()), item.getMetadata())) {
 				registryCache.put(new ItemInfo(item), true);
 				return true;
-			} 
-			else 
-			{
+			} else {
 				registryCache.put(new ItemInfo(item), false);
 			}
-		} 
-		else if (allowed) 
-		{
-			return true;
-		}
+		} else return allowed;
 		return false;
 	}
 }

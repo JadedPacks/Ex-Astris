@@ -8,16 +8,14 @@ public class ItemInfo {
 	private int id;
 	private int subid;
 
-	public ItemInfo(int id)
-	{
+	public ItemInfo(int id) {
 		this.id = id;
 		this.subid = -1;
 	}
 
-	public ItemInfo(ItemStack itemStack)
-	{
+	public ItemInfo(ItemStack itemStack) {
 		this.id = Item.getIdFromItem(itemStack.getItem());
-		this.subid = itemStack.getItemDamage();
+		this.subid = itemStack.getMetadata();
 	}
 
 
@@ -32,18 +30,20 @@ public class ItemInfo {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if(this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if(obj == null) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if(getClass() != obj.getClass()) {
 			return false;
+		}
 		ItemInfo other = (ItemInfo) obj;
-		if (id != other.id)
+		if(id != other.id) {
 			return false;
-		if (subid != other.subid)
-			return false;
-		return true;
+		}
+		return subid == other.subid;
 	}
 
 }

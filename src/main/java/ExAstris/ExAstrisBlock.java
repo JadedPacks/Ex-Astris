@@ -3,12 +3,7 @@ package ExAstris;
 import ExAstris.Block.BlockEndCake;
 import ExAstris.Block.BlockHammerAutomatic;
 import ExAstris.Block.BlockSieveAutomatic;
-import ExAstris.Block.ItemBlock.ItemBlockBarrelThaumium;
-import ExAstris.Block.ItemBlock.ItemBlockEndCake;
-import ExAstris.Block.ItemBlock.ItemBlockOre;
-import ExAstris.Block.ItemBlock.ItemBlockQStronglyCompressedStone;
-import ExAstris.Block.ItemBlock.ItemBlockSieveAutomatic;
-import ExAstris.Block.ItemBlock.ItemBlockStronglyCompressedStone;
+import ExAstris.Block.ItemBlock.*;
 import ExAstris.Bridge.Metallurgy;
 import ExAstris.Bridge.RotaryCraft;
 import ExAstris.Bridge.TConstruct;
@@ -16,7 +11,6 @@ import ExAstris.Bridge.Thaumcraft;
 import ExAstris.Data.BlockData;
 import ExAstris.Data.ModData;
 import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.ModAPIManager;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 
@@ -62,16 +56,13 @@ public class ExAstrisBlock {
 
 	public static Block testOreBlock;
 
-	public static void registerBlocks()
-	{
+	public static void registerBlocks() {
 
-		if(Loader.isModLoaded("Thaumcraft"))
-		{
+		if(Loader.isModLoaded("Thaumcraft")) {
 			BarrelThaumium = Thaumcraft.barrelThaumic();
 			GameRegistry.registerBlock(BarrelThaumium, ItemBlockBarrelThaumium.class, BlockData.BARREL_THAUMIUM_KEY);
 
-			if(Loader.isModLoaded("MagicBees"))
-			{
+			if(Loader.isModLoaded("MagicBees")) {
 				BeeTrapInfused = Thaumcraft.beeTrapInfused();
 				GameRegistry.registerBlock(BeeTrapInfused, BlockData.BEE_TRAP_INFUSED_KEY);
 			}
@@ -85,8 +76,7 @@ public class ExAstrisBlock {
 		EndCake = new BlockEndCake();
 		GameRegistry.registerBlock(EndCake, ItemBlockEndCake.class, BlockData.ENDCAKE_KEY);
 
-		if(Loader.isModLoaded("TConstruct") && ModData.allowAddTConstructNetherOre)
-		{
+		if(Loader.isModLoaded("TConstruct") && ModData.allowAddTConstructNetherOre) {
 			cobaltOreBlock = TConstruct.oreBlock("Cobalt");
 			GameRegistry.registerBlock(cobaltOreBlock, ItemBlockOre.class, "CobaltOreBlock");
 
@@ -98,8 +88,7 @@ public class ExAstrisBlock {
 
 		}
 
-		if(Loader.isModLoaded("RotaryCraft") && ModData.allowStronglyCompressedStone)
-		{
+		if(Loader.isModLoaded("RotaryCraft") && ModData.allowStronglyCompressedStone) {
 			StronglyCompressedStone = RotaryCraft.stronglyCompressedStone();
 			GameRegistry.registerBlock(StronglyCompressedStone, ItemBlockStronglyCompressedStone.class, BlockData.STRONGLY_COMPRESSED_STONE_KEY);
 
@@ -108,8 +97,7 @@ public class ExAstrisBlock {
 
 		}
 
-		if(Loader.isModLoaded("Metallurgy") && ModData.allowMetallurgyOres)
-		{
+		if(Loader.isModLoaded("Metallurgy") && ModData.allowMetallurgyOres) {
 			eximiteOreBlock = Metallurgy.oreBlock("Eximite");
 			GameRegistry.registerBlock(eximiteOreBlock, ItemBlockOre.class, "EximiteOreBlock");
 

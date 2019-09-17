@@ -1,23 +1,12 @@
 package ExAstris;
 
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.registry.GameRegistry;
-import exnihilo.Fluids;
-import exnihilo.registries.BarrelRecipeRegistry;
-import ExAstris.Bridge.BloodMagic;
-import ExAstris.Bridge.Botania;
-import ExAstris.Bridge.Chisel;
-import ExAstris.Bridge.EnderIO;
-import ExAstris.Bridge.FoodPlus;
-import ExAstris.Bridge.Metallurgy;
-import ExAstris.Bridge.RedstoneArsenal;
-import ExAstris.Bridge.TConstruct;
-import ExAstris.Bridge.Thaumcraft;
+import ExAstris.Bridge.*;
 import ExAstris.Data.ItemData;
 import ExAstris.Data.ModData;
 import ExAstris.Item.ItemSieveUpgrade;
+import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class ExAstrisItem {
@@ -27,11 +16,11 @@ public class ExAstrisItem {
 	public static Item DollFreezing;
 	public static Item UnchargedNetherStar;
 	public static Item CrookRF;
-	
+
 	//TConstruct Nether ores
 	public static Item cobaltOreItem;
 	public static Item arditeOreItem;
-	
+
 	//Metallurgy
 	public static Item eximiteOreItem;
 	public static Item meutoiteOreItem;
@@ -47,7 +36,7 @@ public class ExAstrisItem {
 	public static Item orichalcumOreItem;
 	public static Item adamantineOreItem;
 	public static Item atlarusOreItem;
-	
+
 	public static Item ignatiusOreItem;
 	public static Item shadowironOreItem;
 	public static Item lemuriteOreItem;
@@ -58,70 +47,62 @@ public class ExAstrisItem {
 	public static Item kalendriteOreItem;
 	public static Item vulcaniteOreItem;
 	public static Item sanguiniteOreItem;
-	
+
 	public static Item sieveUpgradeItem;
-	
+
 	public static Item nuggetElectricalSteel;
-	
+
 	public static Item chiselStone;
-	
+
 	public static Item manaHammer;
-	
+
 	public static Item foodPlusSeed;
-	
-	public static void registerItems()
-	{
-		if(Loader.isModLoaded("Thaumcraft"))
-		{
+
+	public static void registerItems() {
+		if(Loader.isModLoaded("Thaumcraft")) {
 			DollThaumic = Thaumcraft.dollThaumic();
 			GameRegistry.registerItem(DollThaumic, ItemData.THAUMIC_DOLL_UNLOCALIZED_NAME);
 			//BarrelRecipeRegistry.addMobRecipe(Fluids.fluidWitchWater, new ItemStack(DollThaumic), Thaumcraft.entityPech(), "portal", )
-			
+
 			HammerThaumium = Thaumcraft.hammerThaumic();
 			GameRegistry.registerItem(HammerThaumium, ItemData.HAMMER_THAUMIUM_UNLOCALIZED_NAME);
-			if(Loader.isModLoaded("ThermalExpansion"))
-			{
+			if(Loader.isModLoaded("ThermalExpansion")) {
 				DollFreezing = Thaumcraft.dollFreezing();
 				GameRegistry.registerItem(DollFreezing, ItemData.FREEZING_DOLL_UNLOCALIZED_NAME);
 			}
 		}
-		if(Loader.isModLoaded("RedstoneArsenal"))
-		{
-			if (ModData.allowHammerRF)
-			{
+		if(Loader.isModLoaded("RedstoneArsenal")) {
+			if(ModData.allowHammerRF) {
 				HammerRF = RedstoneArsenal.HammerRF();
 				GameRegistry.registerItem(HammerRF, ItemData.HAMMER_RF_UNLOCALIZED_NAME);
 			}
-			if (ModData.allowCrookRF)
-			{
+			if(ModData.allowCrookRF) {
 				CrookRF = RedstoneArsenal.CrookRF();
 				GameRegistry.registerItem(CrookRF, ItemData.CROOK_RF_UNLOCALIZED_NAME);
 			}
 		}
-		
-				
-		if(Loader.isModLoaded("AWWayofTime") && ModData.allowUnchargedNetherstar){
+
+
+		if(Loader.isModLoaded("AWWayofTime") && ModData.allowUnchargedNetherstar) {
 			UnchargedNetherStar = BloodMagic.unchargedNetherStar();
 			GameRegistry.registerItem(UnchargedNetherStar, ItemData.UNCHARGED_NETHERSTAR_UNLOCALIZED_NAME);
 		}
-		
-		if(Loader.isModLoaded("TConstruct") && ModData.allowAddTConstructNetherOre)
-		{
+
+		if(Loader.isModLoaded("TConstruct") && ModData.allowAddTConstructNetherOre) {
 			cobaltOreItem = TConstruct.oreItem("Cobalt");
 			GameRegistry.registerItem(cobaltOreItem, "CobaltOreItem");
 
 			arditeOreItem = TConstruct.oreItem("Ardite");
 			GameRegistry.registerItem(arditeOreItem, "ArditeOreItem");
 		}
-		
-		if(Loader.isModLoaded("Metallurgy") && ModData.allowMetallurgyOres)
-		{
+
+		if(Loader.isModLoaded("Metallurgy") && ModData.allowMetallurgyOres) {
 			eximiteOreItem = Metallurgy.oreItem("Eximite");
 			GameRegistry.registerItem(eximiteOreItem, "EximiteOreItem");
 
 			meutoiteOreItem = Metallurgy.oreItem("Meutoite");
 			GameRegistry.registerItem(meutoiteOreItem, "MeutoiteOreItem");
-			
+
 			prometheumOreItem = Metallurgy.oreItem("Prometheum");
 			deepironOreItem = Metallurgy.oreItem("DeepIron");
 			infuscoliumOreItem = Metallurgy.oreItem("Infuscolium");
@@ -133,19 +114,19 @@ public class ExAstrisItem {
 			orichalcumOreItem = Metallurgy.oreItem("Orichalcum");
 			adamantineOreItem = Metallurgy.oreItem("Adamantine");
 			atlarusOreItem = Metallurgy.oreItem("Atlarus");
-			
-			GameRegistry.registerItem(prometheumOreItem,  "PrometheumOreItem");
-			GameRegistry.registerItem(deepironOreItem,  "DeepIronOreItem");
+
+			GameRegistry.registerItem(prometheumOreItem, "PrometheumOreItem");
+			GameRegistry.registerItem(deepironOreItem, "DeepIronOreItem");
 			GameRegistry.registerItem(infuscoliumOreItem, "InfuscoliumOreItem");
-			GameRegistry.registerItem(oureclaseOreItem,  "OureclaseOreItem");
-			GameRegistry.registerItem(astralsilverOreItem,  "AstralSilverOreItem");
-			GameRegistry.registerItem(carmotOreItem,  "CarmotOreItem");
-			GameRegistry.registerItem(mithrilOreItem,  "MithrilOreItem");
+			GameRegistry.registerItem(oureclaseOreItem, "OureclaseOreItem");
+			GameRegistry.registerItem(astralsilverOreItem, "AstralSilverOreItem");
+			GameRegistry.registerItem(carmotOreItem, "CarmotOreItem");
+			GameRegistry.registerItem(mithrilOreItem, "MithrilOreItem");
 			GameRegistry.registerItem(rubraciumOreItem, "RubraciumOreItem");
 			GameRegistry.registerItem(orichalcumOreItem, "OrichalcumOreItem");
 			GameRegistry.registerItem(adamantineOreItem, "AdamantineOreItem");
-			GameRegistry.registerItem(atlarusOreItem,  "AtlarusOreItem");
-			
+			GameRegistry.registerItem(atlarusOreItem, "AtlarusOreItem");
+
 			ignatiusOreItem = Metallurgy.oreItem("Ignatius");
 			shadowironOreItem = Metallurgy.oreItem("ShadowIron");
 			lemuriteOreItem = Metallurgy.oreItem("Lemurite");
@@ -156,45 +137,40 @@ public class ExAstrisItem {
 			kalendriteOreItem = Metallurgy.oreItem("Kalendrite");
 			vulcaniteOreItem = Metallurgy.oreItem("Vulcanite");
 			sanguiniteOreItem = Metallurgy.oreItem("Sanguinite");
-			
-			GameRegistry.registerItem(ignatiusOreItem,  "IgnatiusOreItem");
-			GameRegistry.registerItem(shadowironOreItem,  "ShadowIronOreItem");
-			GameRegistry.registerItem(lemuriteOreItem,  "LemuriteOreItem");
-			GameRegistry.registerItem(midasiumOreItem,  "MidasiumOreItem");
-			GameRegistry.registerItem(vyroxeresOreItem,  "VyroxeresOreItem");
-			GameRegistry.registerItem(ceruclaseOreItem,  "CeruclaseOreItem");
-			GameRegistry.registerItem(alduoriteOreItem,  "AlduoriteOreItem");
-			GameRegistry.registerItem(kalendriteOreItem,  "KalendriteOreItem");
-			GameRegistry.registerItem(vulcaniteOreItem,  "VulcaniteOreItem");
-			GameRegistry.registerItem(sanguiniteOreItem,  "SanguiniteOreItem");
+
+			GameRegistry.registerItem(ignatiusOreItem, "IgnatiusOreItem");
+			GameRegistry.registerItem(shadowironOreItem, "ShadowIronOreItem");
+			GameRegistry.registerItem(lemuriteOreItem, "LemuriteOreItem");
+			GameRegistry.registerItem(midasiumOreItem, "MidasiumOreItem");
+			GameRegistry.registerItem(vyroxeresOreItem, "VyroxeresOreItem");
+			GameRegistry.registerItem(ceruclaseOreItem, "CeruclaseOreItem");
+			GameRegistry.registerItem(alduoriteOreItem, "AlduoriteOreItem");
+			GameRegistry.registerItem(kalendriteOreItem, "KalendriteOreItem");
+			GameRegistry.registerItem(vulcaniteOreItem, "VulcaniteOreItem");
+			GameRegistry.registerItem(sanguiniteOreItem, "SanguiniteOreItem");
 		}
-		if (ModData.allowSieveAutomatic)
-		{
+		if(ModData.allowSieveAutomatic) {
 			sieveUpgradeItem = new ItemSieveUpgrade();
 			GameRegistry.registerItem(sieveUpgradeItem, "SieveUpgradeItem");
 		}
-		
-		if (Loader.isModLoaded("chisel"))
-		{
+
+		if(Loader.isModLoaded("chisel")) {
 			chiselStone = Chisel.chiselStones();
 			GameRegistry.registerItem(chiselStone, "chiselStone");
 		}
-		
-		if (Loader.isModLoaded("EnderIO"))
-		{
+
+		if(Loader.isModLoaded("EnderIO")) {
 			nuggetElectricalSteel = EnderIO.electricalNugget();
 			GameRegistry.registerItem(nuggetElectricalSteel, "nuggetElectricalSteel");
 			OreDictionary.registerOre("nuggetElectricalSteel", nuggetElectricalSteel);
 		}
-		
-		if (Loader.isModLoaded("Botania"))
-		{
+
+		if(Loader.isModLoaded("Botania")) {
 			manaHammer = Botania.manaHammer();
 			GameRegistry.registerItem(manaHammer, "manaHammer");
 		}
-		
-		if (Loader.isModLoaded("FoodPlus"))
-		{
+
+		if(Loader.isModLoaded("FoodPlus")) {
 			foodPlusSeed = FoodPlus.foodPlusSeed();
 			GameRegistry.registerItem(foodPlusSeed, "foodPlusSeed");
 		}

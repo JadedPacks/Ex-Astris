@@ -8,48 +8,41 @@ public class Proxy {
 
 	protected static Proxy proxyInstance = null;
 
-	public static void setInstance(Proxy newProxy)
-	{
+	public static void setInstance(Proxy newProxy) {
 		proxyInstance = newProxy;
 	}
 
-	public static Proxy getProxy()
-	{
-		if (proxyInstance == null)
-		{
+	public static Proxy getProxy() {
+		if(proxyInstance == null) {
 			proxyInstance = new Proxy();
 		}
-		
+
 		return proxyInstance;
 	}
-	
-	public void initializeSounds(){}
-	public void initializeRenderers(){}
-	public World getWorld()
-	{
+
+	public void initializeSounds() {}
+
+	public void initializeRenderers() {}
+
+	public World getWorld() {
 		return null;
 	}
-	
-	 public static boolean runningOnServer()
-	  {
-	    boolean server = false;
-	    
-	    try
-	    {
-	      server = serverCheck();
-	    }
-	    catch (NoSuchMethodError e)
-	    {
-	      server = false;
-	    }
-	    
-	    return server;
-	  }
-	  
-	  @SideOnly(Side.SERVER)
-	  public static boolean serverCheck()
-	  {
-	    return true;
-	  }
+
+	public static boolean runningOnServer() {
+		boolean server = false;
+
+		try {
+			server = serverCheck();
+		} catch(NoSuchMethodError e) {
+			server = false;
+		}
+
+		return server;
+	}
+
+	@SideOnly(Side.SERVER)
+	public static boolean serverCheck() {
+		return true;
+	}
 }
 

@@ -1,7 +1,4 @@
-Ex Astris
-=========
-
-Originally from LoveHoly, and now maintained by me!
+#Ex Astris
 Add mod integration to your SkyBlock.
 
 Please put all suggestions in the issue tracker (preferably using the [Suggestion] Tag).
@@ -15,3 +12,6 @@ Special Thanks
 - Coding Help nemonemo 
 - Translating Help Kagerow, Seren, crafteverywhere, ViKaleidoscope
 - Texture Help Nark
+
+## Modified
+This is a modified version built by Developaws

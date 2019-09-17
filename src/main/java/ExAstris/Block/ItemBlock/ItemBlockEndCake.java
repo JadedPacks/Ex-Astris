@@ -10,15 +10,13 @@ public class ItemBlockEndCake extends ItemBlock {
 	public ItemBlockEndCake(Block block) {
 		super(block);
 	}
-	
-	public String getUnlocalizedName(ItemStack itemstack)
-	{
+
+	public String getUnlocalizedName(ItemStack itemstack) {
 		return ModData.ID + "." + BlockData.ENDCAKE_UNLOCALIZED_NAME;
 	}
-	
+
 	@Override
-	public int getMetadata(int meta)
-	{
+	public int getMetadata(int meta) {
 		return meta;
 	}
 }

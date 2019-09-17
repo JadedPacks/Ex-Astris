@@ -5,24 +5,20 @@ import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
-public class ItemBlockOre extends  ItemBlock
-{
+public class ItemBlockOre extends ItemBlock {
 
-	public ItemBlockOre(Block block)
-	{
+	public ItemBlockOre(Block block) {
 		super(block);
 		setHasSubtypes(true);
 	}
-	
+
 	@Override
-	public String getUnlocalizedName(ItemStack item)
-	{
-		return ModData.ID+".block." + this.getUnlocalizedName() + ModData.oreType[item.getItemDamage()];
+	public String getUnlocalizedName(ItemStack item) {
+		return ModData.ID + ".block." + this.getUnlocalizedName() + ModData.oreType[item.getMetadata()];
 	}
-	
+
 	@Override
-	public int getMetadata (int meta)
-    {
-        return meta;
-    }
+	public int getMetadata(int meta) {
+		return meta;
+	}
 }
