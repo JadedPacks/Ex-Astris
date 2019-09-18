@@ -88,7 +88,7 @@ public class TileEntityHammerAutomatic extends TileEntity implements IEnergyHand
 			//give rewards!
 			if(!worldObj.isRemote) {
 				ArrayList<Smashable> rewards = HammerRegistry.getRewards(content, contentMeta);
-				if(rewards.size() > 0) {
+				if(rewards != null && rewards.size() > 0) {
 					Iterator<Smashable> it = rewards.iterator();
 					while(it.hasNext()) {
 						Smashable reward = it.next();
