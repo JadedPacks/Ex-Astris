@@ -13,10 +13,9 @@ import net.minecraft.util.IIcon;
 import java.util.List;
 
 public class BlockOre extends BlockSand {
-
+	public String Name;
 	@SideOnly(Side.CLIENT)
 	private IIcon[] icon;
-	public String Name;
 
 	public BlockOre(String name) {
 		super();
@@ -29,7 +28,6 @@ public class BlockOre extends BlockSand {
 	@Override
 	public void registerIcons(IIconRegister register) {
 		icon = new IIcon[3];
-
 		for(int i = 0; i < icon.length; i++) {
 			icon[i] = register.registerIcon(ModData.ID + ":" + ModData.oreType[i] + "/Block" + Name + ModData.oreType[i]);
 		}
@@ -54,7 +52,6 @@ public class BlockOre extends BlockSand {
 	public int damageDropped(int meta) {
 		return meta;
 	}
-
 
 	@Override
 	public String getUnlocalizedName() {

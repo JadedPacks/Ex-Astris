@@ -6,7 +6,6 @@ import tconstruct.library.tools.ToolCore;
 import tconstruct.modifiers.tools.ModBoolean;
 
 public class ModCrooked extends ModBoolean {
-
 	static String name = "Crooked";
 	static String color = "\u00a77";
 	static String tooltip = "Crooked";
@@ -22,7 +21,6 @@ public class ModCrooked extends ModBoolean {
 			if(!validType(toolitem)) {
 				return false;
 			}
-
 			NBTTagCompound tags = tool.getTagCompound().getCompoundTag("InfiTool");
 			if(!tags.getBoolean("Lava") && !tags.hasKey("Lapis") && !tags.hasKey("Silk Touch") && !tags.hasKey("Hammered")) {
 				return tags.getInteger("Modifiers") > 0 && !tags.getBoolean(key);
@@ -34,22 +32,18 @@ public class ModCrooked extends ModBoolean {
 	public void modify(ItemStack[] input, ItemStack tool) {
 		NBTTagCompound tags = tool.getTagCompound().getCompoundTag("InfiTool");
 		tags.setBoolean(name, true);
-
 		int modifiers = tags.getInteger("Modifiers");
 		modifiers -= 1;
 		tags.setInteger("Modifiers", modifiers);
-
 		int attack = tags.getInteger("Attack");
 		attack = 0;
 		tags.setInteger("Attack", attack);
-
 		int miningSpeed = tags.getInteger("MiningSpeed");
 		miningSpeed -= 300;
 		if(miningSpeed < 0) {
 			miningSpeed = 0;
 		}
 		tags.setInteger("MiningSpeed", miningSpeed);
-
 		if(tags.hasKey("MiningSpeed2")) {
 			int miningSpeed2 = tags.getInteger("MiningSpeed2");
 			miningSpeed2 -= 300;
@@ -58,25 +52,13 @@ public class ModCrooked extends ModBoolean {
 			}
 			tags.setInteger("MiningSpeed2", miningSpeed2);
 		}
-
 		float knockback = tags.getFloat("Knockback");
-
 		knockback += 1.5F;
 		tags.setFloat("Knockback", knockback);
-
 		addToolTip(tool, color + tooltip, color + key);
 	}
 
 	public boolean validType(ToolCore tool) {
-		return tool.getToolName().equals("Mattock") ||
-			       tool.getToolName().equals("Hatchet") ||
-			       tool.getToolName().equals("Broadsword") ||
-			       tool.getToolName().equals("Longsword") ||
-			       tool.getToolName().equals("Rapier") ||
-			       tool.getToolName().equals("Cutlass") ||
-			       tool.getToolName().equals("Cleaver") ||
-			       tool.getToolName().equals("Lumber Axe") ||
-			       tool.getToolName().equals("Scythe") || tool.getToolName().equals("Pickaxe");
+		return tool.getToolName().equals("Mattock") || tool.getToolName().equals("Hatchet") || tool.getToolName().equals("Broadsword") || tool.getToolName().equals("Longsword") || tool.getToolName().equals("Rapier") || tool.getToolName().equals("Cutlass") || tool.getToolName().equals("Cleaver") || tool.getToolName().equals("Lumber Axe") || tool.getToolName().equals("Scythe") || tool.getToolName().equals("Pickaxe");
 	}
-
 }

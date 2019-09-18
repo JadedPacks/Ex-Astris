@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class ItemFoodPlusSeed extends ItemSeedBase {
-
 	private static ArrayList<Block> plants = new ArrayList<Block>();
 	private static Random rand = new Random();
 
@@ -26,6 +25,12 @@ public class ItemFoodPlusSeed extends ItemSeedBase {
 		}
 	}
 
+	public static void addPlants(Block[] block) {
+		for(Block bl : block) {
+			addPlant(bl);
+		}
+	}
+
 	@Override
 	public EnumPlantType getPlantType(IBlockAccess world, int x, int y, int z) {
 		return EnumPlantType.Plains;
@@ -33,11 +38,9 @@ public class ItemFoodPlusSeed extends ItemSeedBase {
 
 	@Override
 	public Block getPlant(IBlockAccess world, int x, int y, int z) {
-
 		if(plants.size() > 0) {
 			return plants.get(rand.nextInt(plants.size()));
 		}
-
 		return Blocks.sapling;
 	}
 
@@ -50,11 +53,4 @@ public class ItemFoodPlusSeed extends ItemSeedBase {
 	public int getPlantMetadata(IBlockAccess world, int x, int y, int z) {
 		return 0;
 	}
-
-	public static void addPlants(Block[] block) {
-		for(Block bl : block) {
-			addPlant(bl);
-		}
-	}
-
 }

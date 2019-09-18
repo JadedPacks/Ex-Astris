@@ -9,7 +9,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.util.IIcon;
 
-
 public class BlockBeeTrapInfused extends Block {
 	public static IIcon topIcon;
 	public static IIcon sideIcon;

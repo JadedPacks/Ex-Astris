@@ -29,9 +29,7 @@ public class BlockEndCake extends BlockCake {
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister register) {
 		icon = new IIcon[4];
-
 		for(int i = 0; i < icon.length; i++) {
-
 			icon[i] = register.registerIcon(ModData.TEXTURE_LOCATION + ":EnderCake_" + i);
 		}
 	}
@@ -46,7 +44,6 @@ public class BlockEndCake extends BlockCake {
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9) {
 		int meta = world.getBlockMetadata(x, y, z) - 1;
 		ItemStack item = player.getCurrentEquippedItem();
-
 		if(player.capabilities.isCreativeMode) {
 			if(item != null && item.getItem() == Items.ender_eye) {
 				world.setBlockMetadataWithNotify(x, y, z, 0, 2);
@@ -76,7 +73,6 @@ public class BlockEndCake extends BlockCake {
 	private void nomEndCake(World world, int x, int y, int z, EntityPlayer player) {
 		if(player.canEat(false) || ModData.allowEndCakeEatingWhileFull) {
 			int l = world.getBlockMetadata(x, y, z) + 1;
-
 			if(l >= 6) {
 				return;
 			} else {

@@ -9,7 +9,6 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
-
 //import exnihilo.blocks.models.ModelSieveMesh;
 
 public class ItemRenderSieveAutomatic implements IItemRenderer {
@@ -52,7 +51,6 @@ public class ItemRenderSieveAutomatic implements IItemRenderer {
 			case INVENTORY:
 				break;
 		}
-
 		switch(helper) {
 			case BLOCK_3D:
 				break;
@@ -66,7 +64,6 @@ public class ItemRenderSieveAutomatic implements IItemRenderer {
 				break;
 			default:
 				break;
-
 		}
 		return true;
 	}
@@ -80,70 +77,55 @@ public class ItemRenderSieveAutomatic implements IItemRenderer {
 	private void renderTable(ItemRenderType type, ItemStack item) {
 		GL11.glPushMatrix();
 		GL11.glScalef(-1F, -1F, 1F);
-
 		switch(type) {
 			case EQUIPPED:
 				GL11.glTranslatef(-0.5F, -1.5F, 0.5F);
 				break;
-
 			case EQUIPPED_FIRST_PERSON:
 				GL11.glTranslatef(0F, -1.6F, 0.6F);
 				break;
-
 			case ENTITY:
 				GL11.glTranslatef(0F, -1.0F, 0F);
 				break;
-
 			case INVENTORY:
 				GL11.glTranslatef(0F, -1.0F, 0F);
 				break;
-
 			default:
 				GL11.glTranslatef(0F, 0F, 0F);
 				break;
 		}
-
 		bindTexture(item.getMetadata());
 		model.simpleRender(0.0625F);
-
 		GL11.glPopMatrix();
 	}
 
 	private void renderMesh(ItemRenderType type) {
 		GL11.glPushMatrix();
 		GL11.glScalef(-1F, -1F, 1F);
-
 		switch(type) {
 			case EQUIPPED:
 				GL11.glTranslatef(-0.5F, -0.69F, 0.5F);
 				break;
-
 			case EQUIPPED_FIRST_PERSON:
 				GL11.glTranslatef(-0.5F, -0.79F, 0.5F);
 				break;
-
 			case ENTITY:
 				GL11.glTranslatef(0F, -0.2F, 0F);
 				break;
-
 			case INVENTORY:
 				GL11.glTranslatef(0F, -0.2F, 0F);
 				break;
-
 			default:
 				GL11.glTranslatef(0F, -0.2F, 0F);
 				break;
 		}
-
 		bindMeshTexture();
 		mesh.render(BlockSieveAutomatic.meshIcon);
-
 		GL11.glPopMatrix();
 	}
 
 	protected void bindTexture(int meta) {
 		TextureManager texturemanager = Minecraft.getMinecraft().getTextureManager();
-
 		if(texturemanager != null) {
 			texturemanager.bindTexture(ModelSieveAutomatic.texture);
 		}
@@ -151,7 +133,6 @@ public class ItemRenderSieveAutomatic implements IItemRenderer {
 
 	protected void bindMeshTexture() {
 		TextureManager texturemanager = Minecraft.getMinecraft().getTextureManager();
-
 		if(texturemanager != null) {
 			texturemanager.bindTexture(TextureMap.locationBlocksTexture);
 		}

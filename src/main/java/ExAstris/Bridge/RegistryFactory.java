@@ -20,7 +20,6 @@ public class RegistryFactory {
 			HammerRegistry.register(block, i, item, (i + 1), 0.05f, 0.1f);
 			HammerRegistry.register(block, i, item, (i + 1), 0.0f, 0.05f);
 		}
-
 	}
 
 	public static void FurnaceOreRegistryFactory(Block block, ItemStack items) {

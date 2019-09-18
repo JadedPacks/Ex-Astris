@@ -15,23 +15,19 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
 public class Chisel {
-
 	public static void init() {
 		if(ModData.allowChiselBlocksFromSifting) {
 			SieveRegistry.register(Blocks.stone, 0, ExAstrisItem.chiselStone, 0, 1);
 			SieveRegistry.register(Blocks.stone, 0, ExAstrisItem.chiselStone, 0, 2);
 			SieveRegistry.register(Blocks.stone, 0, ExAstrisItem.chiselStone, 0, 4);
 			SieveRegistry.register(Blocks.stone, 0, ExAstrisItem.chiselStone, 0, 16);
-
 			SieveRegistry.register(Blocks.stone, 0, ExAstrisItem.chiselStone, 1, 1);
 			SieveRegistry.register(Blocks.stone, 0, ExAstrisItem.chiselStone, 1, 2);
 			SieveRegistry.register(Blocks.stone, 0, ExAstrisItem.chiselStone, 1, 4);
 			SieveRegistry.register(Blocks.stone, 0, ExAstrisItem.chiselStone, 1, 16);
-
 			GameRegistry.addRecipe(new ItemStack(GameRegistry.findItem("chisel", "marble"), 1, 0), "aa", "aa", 'a', new ItemStack(ExAstrisItem.chiselStone, 1, 0));
 			GameRegistry.addRecipe(new ItemStack(GameRegistry.findItem("chisel", "limestone"), 1, 0), "aa", "aa", 'a', new ItemStack(ExAstrisItem.chiselStone, 1, 1));
 		}
-
 	}
 
 	public static Item chiselStones() {
@@ -46,7 +42,6 @@ public class Chisel {
 				FMLInterModComms.sendMessage("chisel", IMC.ADD_VARIATION.key, "ENBarrel|exnihilo:barrel|" + i);
 			}
 		}
-
 		if(ModData.allowSievesToBeChiselled) {
 			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ENBlocks.Sieve), "aba", "cbc", "c c", 'a', "plankWood", 'b', ENItems.Mesh, 'c', "stickWood"));
 			for(int i = 0; i < 6; i++) {
@@ -54,5 +49,4 @@ public class Chisel {
 			}
 		}
 	}
-
 }

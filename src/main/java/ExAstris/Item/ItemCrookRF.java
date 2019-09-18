@@ -16,11 +16,9 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
 public class ItemCrookRF extends ItemToolRF {
-
 	public IIcon itemIcon;
 	public IIcon empoweredIcon;
 	public IIcon drainedIcon;
-
 
 	public ItemCrookRF() {
 		super(RAItems.TOOL_MATERIAL_FLUX);
@@ -50,9 +48,7 @@ public class ItemCrookRF extends ItemToolRF {
 		if(getEnergyStored(item) < getEnergyPerUse(item)) {
 			return false;
 		}
-
 		CrookUtils.doCrooking(item, X, Y, Z, player);
-
 		return false;
 	}
 
@@ -63,7 +59,6 @@ public class ItemCrookRF extends ItemToolRF {
 		} else if(getEnergyStored(item) >= getEnergyPerUse(item)) {
 			return efficiencyOnProperMaterial * 0.4f;
 		}
-
 		return 0.5f;
 	}
 
@@ -89,8 +84,6 @@ public class ItemCrookRF extends ItemToolRF {
 		if(canHarvestBlock(block, stack) && entity instanceof EntityPlayer) {
 			harvestBlock(world, x, y, z, (EntityPlayer) entity);
 		}
-
 		return true;
 	}
-
 }

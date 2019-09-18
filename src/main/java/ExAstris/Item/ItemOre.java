@@ -12,10 +12,9 @@ import net.minecraft.util.IIcon;
 import java.util.List;
 
 public class ItemOre extends Item {
-
+	public String Name;
 	@SideOnly(Side.CLIENT)
 	private IIcon[] icon;
-	public String Name;
 	//private String name = this.getUnlocalizedName().substring(5);
 
 	public ItemOre(String name) {
@@ -38,7 +37,6 @@ public class ItemOre extends Item {
 	@Override
 	public void registerIcons(IIconRegister register) {
 		icon = new IIcon[3];
-
 		for(int i = 0; i < icon.length; i++) {
 			icon[i] = register.registerIcon(ModData.ID + ":" + ModData.oreType[i] + "/Item" + this.getUnlocalizedName() + ModData.oreType[i]);
 		}

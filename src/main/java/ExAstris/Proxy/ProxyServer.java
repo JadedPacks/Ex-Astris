@@ -4,6 +4,4 @@ public class ProxyServer extends Proxy {
 	public ProxyServer() {
 		Proxy.setInstance(this);
 	}
-
-
 }

@@ -9,7 +9,6 @@ import exnihilo.registries.helpers.Color;
 import net.minecraft.item.Item;
 
 public class Botania {
-
 	public static void init() {
 		if(ModData.allowBotaniaComposting) {
 			registerColors();
@@ -30,5 +29,4 @@ public class Botania {
 	public static Item manaHammer() {
 		return new ItemHammerMana();
 	}
-
 }

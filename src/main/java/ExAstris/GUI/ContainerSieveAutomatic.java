@@ -16,30 +16,23 @@ public class ContainerSieveAutomatic extends Container {
 	public TileEntitySieveAutomatic sieve;
 	private int lastEnergy;
 
-	public ContainerSieveAutomatic(InventoryPlayer invPlayer,
-	                               TileEntitySieveAutomatic entity) {
+	public ContainerSieveAutomatic(InventoryPlayer invPlayer, TileEntitySieveAutomatic entity) {
 		sieve = entity;
 		this.addSlotToContainer(new SlotSieveAutomatic(sieve, 0, 8, 35));
-
 		int i;
-
 		for(i = 0; i < 4; ++i) {
 			for(int j = 0; j < 5; ++j) {
 				this.addSlotToContainer(new SlotClosed(sieve, 1 + (i * 5) + j, 57 + (j * 18), 8 + (i * 18)));
 			}
 		}
-
 		for(i = 0; i < 3; ++i) {
 			for(int j = 0; j < 9; ++j) {
 				this.addSlotToContainer(new Slot(invPlayer, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
 			}
 		}
-
-
 		for(i = 0; i < 9; ++i) {
 			this.addSlotToContainer(new Slot(invPlayer, i, 8 + i * 18, 142));
 		}
-
 		this.addSlotToContainer(new SlotSieveAutomatic(sieve, 21, 8, 62));
 		this.addSlotToContainer(new SlotSieveAutomatic(sieve, 22, 33, 62));
 	}
@@ -74,14 +67,11 @@ public class ContainerSieveAutomatic extends Container {
 					return null;
 				}
 			}
-
-
 			if(stackInSlot.stackSize == 0) {
 				slot.putStack(null);
 			} else {
 				slot.onSlotChanged();
 			}
-
 			if(stackInSlot.stackSize == stack.stackSize) {
 				return null;
 			}
@@ -107,5 +97,4 @@ public class ContainerSieveAutomatic extends Container {
 	public void updateProgressBar(int par1, int par2) {
 		sieve.setEnergyStored(par2);
 	}
-
 }

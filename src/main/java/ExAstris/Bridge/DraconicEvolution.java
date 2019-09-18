@@ -9,8 +9,6 @@ import exnihilo.registries.helpers.Color;
 import net.minecraft.block.Block;
 
 public class DraconicEvolution {
-
-
 	public static void init() {
 		addOres();
 		addSiftingRegistry();
@@ -22,7 +20,6 @@ public class DraconicEvolution {
 	}
 
 	public static void addSiftingRegistry() {
-
 		HammerRegistry.register(GameRegistry.findBlock("exastris", "draconiumdust_dust"), 0, GameRegistry.findItem("DraconicEvolution", "draconiumDust"), 0, 0.8f, 0);
 		HammerRegistry.register(GameRegistry.findBlock("exastris", "draconiumdust_dust"), 0, GameRegistry.findItem("DraconicEvolution", "draconiumDust"), 0, 0.1f, 0.1f);
 	}
@@ -49,5 +46,4 @@ public class DraconicEvolution {
 			OreDoublingRegistry.resultOverrides.put(block.getUnlocalizedName(), furnaceOutput); //This is naughty
 		}*/
 	}
-
 }

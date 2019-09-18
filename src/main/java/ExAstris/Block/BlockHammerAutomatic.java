@@ -27,9 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BlockHammerAutomatic extends BlockContainer implements IDismantleable {
-
 	public static int renderId;
-
 	private double minYTop = 13d / 16d;
 	private double maxYBot = 3d / 16d;
 
@@ -37,7 +35,6 @@ public class BlockHammerAutomatic extends BlockContainer implements IDismantleab
 		super(Material.iron);
 		setCreativeTab(ExAstris.ExAstris.ExAstrisTab);
 		setHardness(2.0f);
-
 		setUnlocalizedName(ModData.ID + "." + BlockData.HAMMER_AUTOMATIC_KEY);
 		setTextureName(ModData.ID + ":HammerBase");
 		GameRegistry.registerTileEntity(TileEntityHammerAutomatic.class, ModData.ID + "." + BlockData.HAMMER_AUTOMATIC_KEY);
@@ -51,7 +48,6 @@ public class BlockHammerAutomatic extends BlockContainer implements IDismantleab
 	@Override
 	public void breakBlock(World world, int x, int y, int z, Block block, int meta) {
 		TileEntity tile = world.getTileEntity(x, y, z);
-
 		ISidedInventory inv = (ISidedInventory) tile;
 		for(int i = 0; i < inv.getSizeInventory(); i++) {
 			if(inv.getStackInSlot(i) != null) {
@@ -78,7 +74,6 @@ public class BlockHammerAutomatic extends BlockContainer implements IDismantleab
 		if(MinecraftForge.EVENT_BUS.post(e) || e.getResult() == Result.DENY || e.useBlock == Result.DENY) {
 			return false;
 		}
-
 		if(!player.isSneaking()) {
 			player.openGui(ExAstris.ExAstris.instance, 1, world, x, y, z);
 			return true;
@@ -91,11 +86,9 @@ public class BlockHammerAutomatic extends BlockContainer implements IDismantleab
 	public void addCollisionBoxesToList(World world, int x, int y, int z, AxisAlignedBB mask, List list, Entity colliding) {
 		AxisAlignedBB up = getUpperBox(x, y, z);
 		AxisAlignedBB down = getLowerBox(x, y, z);
-
 		if(mask.intersectsWith(up)) {
 			list.add(up);
 		}
-
 		if(mask.intersectsWith(down)) {
 			list.add(down);
 		}
@@ -127,13 +120,11 @@ public class BlockHammerAutomatic extends BlockContainer implements IDismantleab
 	@Override
 	public ArrayList<ItemStack> dismantleBlock(EntityPlayer player, World world, int x, int y, int z, boolean returnDrops) {
 		TileEntityHammerAutomatic te = (TileEntityHammerAutomatic) world.getTileEntity(x, y, z);
-
 		ItemStack stack = new ItemStack(this);
 		if(stack.stackTagCompound == null) {
 			stack.stackTagCompound = new NBTTagCompound();
 		}
 		stack.stackTagCompound.setInteger("energy", te.getEnergyStored(null));
-
 		ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
 		ret.add(stack);
 		world.setBlockToAir(x, y, z);
@@ -153,9 +144,6 @@ public class BlockHammerAutomatic extends BlockContainer implements IDismantleab
 			TileEntityHammerAutomatic sieve = (TileEntityHammerAutomatic) world.getTileEntity(x, y, z);
 			sieve.setEnergyStored(stack.stackTagCompound.getInteger("energy"));
 		}
-
 		super.onBlockPlacedBy(world, x, y, z, player, stack);
-
 	}
-
 }

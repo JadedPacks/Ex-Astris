@@ -16,11 +16,10 @@ import net.minecraftforge.client.model.obj.*;
 import org.lwjgl.opengl.GL11;
 
 public class RenderBlockHammer implements ISimpleBlockRenderingHandler, IItemRenderer {
-	private static final WavefrontObject model_base = new WavefrontObject(new ResourceLocation(ModData.ID, "models/hammer_base.obj"));
-	private static final ResourceLocation texture_base = new ResourceLocation(ModData.ID, "textures/blocks/HammerBase.png");
-
 	public static final WavefrontObject model_arm = new WavefrontObject(new ResourceLocation(ModData.ID, "models/hammer_arm.obj"));
 	public static final ResourceLocation texture_arm = new ResourceLocation(ModData.ID, "textures/blocks/HammerArm.png");
+	private static final WavefrontObject model_base = new WavefrontObject(new ResourceLocation(ModData.ID, "models/hammer_base.obj"));
+	private static final ResourceLocation texture_base = new ResourceLocation(ModData.ID, "textures/blocks/HammerBase.png");
 
 	@Override
 	public boolean handleRenderType(ItemStack item, ItemRenderType type) {
@@ -54,7 +53,6 @@ public class RenderBlockHammer implements ISimpleBlockRenderingHandler, IItemRen
 			case INVENTORY:
 				GL11.glTranslatef(0, -0.5f, 0);
 		}
-
 		Minecraft.getMinecraft().renderEngine.bindTexture(texture_base);
 		model_base.renderAll();
 		Minecraft.getMinecraft().renderEngine.bindTexture(texture_arm);
@@ -96,5 +94,4 @@ public class RenderBlockHammer implements ISimpleBlockRenderingHandler, IItemRen
 	public int getRenderId() {
 		return BlockHammerAutomatic.renderId;
 	}
-
 }

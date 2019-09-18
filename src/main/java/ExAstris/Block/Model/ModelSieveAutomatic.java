@@ -7,6 +7,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 
 public class ModelSieveAutomatic extends ModelBase {
+	public static final ResourceLocation texture = new ResourceLocation(ModData.TEXTURE_LOCATION, "textures/blocks/ModelSieveAutomatic.png");
 	//fields
 	ModelRenderer Leg1;
 	ModelRenderer Leg2;
@@ -17,12 +18,9 @@ public class ModelSieveAutomatic extends ModelBase {
 	ModelRenderer BoxSide3;
 	ModelRenderer BoxSide4;
 
-	public static final ResourceLocation texture = new ResourceLocation(ModData.TEXTURE_LOCATION, "textures/blocks/ModelSieveAutomatic.png");
-
 	public ModelSieveAutomatic() {
 		textureWidth = 128;
 		textureHeight = 128;
-
 		Leg1 = new ModelRenderer(this, 0, 0);
 		Leg1.addBox(0F, 0F, 0F, 1, 11, 1);
 		Leg1.setRotationPoint(-7F, 13F, -7F);

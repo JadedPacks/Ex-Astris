@@ -4,7 +4,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class ItemInfo {
-
 	private int id;
 	private int subid;
 
@@ -17,7 +16,6 @@ public class ItemInfo {
 		this.id = Item.getIdFromItem(itemStack.getItem());
 		this.subid = itemStack.getMetadata();
 	}
-
 
 	@Override
 	public int hashCode() {
@@ -45,6 +43,5 @@ public class ItemInfo {
 		}
 		return subid == other.subid;
 	}
-
 }
 

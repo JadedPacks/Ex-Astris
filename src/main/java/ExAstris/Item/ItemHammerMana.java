@@ -14,7 +14,6 @@ import vazkii.botania.api.mana.IManaUsingItem;
 import vazkii.botania.api.mana.ManaItemHandler;
 
 public class ItemHammerMana extends ItemHammerBase implements IManaUsingItem {
-
 	public static final int MANA_PER_DAMAGE = 60;
 
 	public ItemHammerMana() {
@@ -30,7 +29,6 @@ public class ItemHammerMana extends ItemHammerBase implements IManaUsingItem {
 			if(broken) {
 				ManaItemHandler.requestManaExactForTool(item, player, MANA_PER_DAMAGE * 2, true);
 			}
-
 			return broken;
 		}
 		return false;
@@ -42,7 +40,6 @@ public class ItemHammerMana extends ItemHammerBase implements IManaUsingItem {
 			stack.setMetadata(stack.getMetadata() - 1);
 			EntityPlayer playerEP = (EntityPlayer) player;
 			EntityPlayerMP playerMP = (EntityPlayerMP) playerEP;
-
 			playerMP.playerNetServerHandler.sendPacket(new S2FPacketSetSlot(0, playerEP.inventory.currentItem + 36, stack));
 		}
 	}
@@ -66,5 +63,4 @@ public class ItemHammerMana extends ItemHammerBase implements IManaUsingItem {
 	public void registerIcons(IIconRegister register) {
 		this.itemIcon = register.registerIcon(ModData.TEXTURE_LOCATION + ":HammerMana");
 	}
-
 }

@@ -7,15 +7,11 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
 public class GUIHandler implements IGuiHandler {
-
 	@Override
-	public Object getServerGuiElement(int ID, EntityPlayer player, World world,
-	                                  int x, int y, int z) {
+	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
 		if(ID == 0) {
-
 			TileEntitySieveAutomatic sieve = (TileEntitySieveAutomatic) world.getTileEntity(x, y, z);
 			return new ContainerSieveAutomatic(player.inventory, sieve);
-
 		}
 		if(ID == 1) {
 			TileEntityHammerAutomatic hammer = (TileEntityHammerAutomatic) world.getTileEntity(x, y, z);
@@ -25,13 +21,10 @@ public class GUIHandler implements IGuiHandler {
 	}
 
 	@Override
-	public Object getClientGuiElement(int ID, EntityPlayer player, World world,
-	                                  int x, int y, int z) {
+	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
 		if(ID == 0) {
-
 			TileEntitySieveAutomatic sieve = (TileEntitySieveAutomatic) world.getTileEntity(x, y, z);
 			return new GUISieveAutomatic(player.inventory, sieve);
-
 		}
 		if(ID == 1) {
 			TileEntityHammerAutomatic hammer = (TileEntityHammerAutomatic) world.getTileEntity(x, y, z);
@@ -39,5 +32,4 @@ public class GUIHandler implements IGuiHandler {
 		}
 		return null;
 	}
-
 }

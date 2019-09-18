@@ -8,7 +8,6 @@ import exnihilo.registries.SieveRegistry;
 import net.minecraft.init.Blocks;
 
 public class Natura {
-
 	public static void init() {
 		if(ModData.allowNaturaPlants) {
 			//Saplings
@@ -17,32 +16,25 @@ public class Natura {
 			SieveRegistry.register(GameRegistry.findBlock("Natura", "GrassBlock"), 0, GameRegistry.findItem("Natura", "Rare Sapling"), 2, 128);
 			SieveRegistry.register(GameRegistry.findBlock("Natura", "GrassBlock"), 0, GameRegistry.findItem("Natura", "Rare Sapling"), 3, 128);
 			SieveRegistry.register(GameRegistry.findBlock("Natura", "GrassBlock"), 0, GameRegistry.findItem("Natura", "Rare Sapling"), 4, 128);
-
 			SieveRegistry.register(GameRegistry.findBlock("Natura", "GrassBlock"), 0, GameRegistry.findItem("Natura", "florasapling"), 0, 128);
 			SieveRegistry.register(GameRegistry.findBlock("Natura", "GrassBlock"), 0, GameRegistry.findItem("Natura", "florasapling"), 1, 128);
 			SieveRegistry.register(GameRegistry.findBlock("Natura", "GrassBlock"), 0, GameRegistry.findItem("Natura", "florasapling"), 2, 128);
 			SieveRegistry.register(GameRegistry.findBlock("Natura", "GrassBlock"), 0, GameRegistry.findItem("Natura", "florasapling"), 3, 128);
-
 			SieveRegistry.register(Blocks.soul_sand, 0, GameRegistry.findItem("Natura", "florasapling"), 4, 128);
 			SieveRegistry.register(Blocks.soul_sand, 0, GameRegistry.findItem("Natura", "florasapling"), 5, 128);
 			SieveRegistry.register(Blocks.soul_sand, 0, GameRegistry.findItem("Natura", "florasapling"), 6, 128);
 			SieveRegistry.register(Blocks.soul_sand, 0, GameRegistry.findItem("Natura", "florasapling"), 7, 128);
-
 			SieveRegistry.register(GameRegistry.findBlock("Natura", "GrassBlock"), 0, GameRegistry.findItem("Natura", "BerryBush"), 12, 128);
 			SieveRegistry.register(GameRegistry.findBlock("Natura", "GrassBlock"), 0, GameRegistry.findItem("Natura", "BerryBush"), 13, 128);
 			SieveRegistry.register(GameRegistry.findBlock("Natura", "GrassBlock"), 0, GameRegistry.findItem("Natura", "BerryBush"), 14, 128);
 			SieveRegistry.register(GameRegistry.findBlock("Natura", "GrassBlock"), 0, GameRegistry.findItem("Natura", "BerryBush"), 15, 128);
-
 			SieveRegistry.register(Blocks.soul_sand, 0, GameRegistry.findItem("Natura", "soil.tainted"), 0, 32);
 			SieveRegistry.register(Blocks.soul_sand, 0, GameRegistry.findItem("Natura", "heatsand"), 0, 32);
-
 			SieveRegistry.register(GameRegistry.findBlock("Natura", "soil.tainted"), 0, GameRegistry.findItem("Natura", "NetherBerryBush"), 12, 64);
 			SieveRegistry.register(GameRegistry.findBlock("Natura", "soil.tainted"), 0, GameRegistry.findItem("Natura", "NetherBerryBush"), 13, 64);
 			SieveRegistry.register(GameRegistry.findBlock("Natura", "soil.tainted"), 0, GameRegistry.findItem("Natura", "NetherBerryBush"), 14, 64);
 			SieveRegistry.register(GameRegistry.findBlock("Natura", "soil.tainted"), 0, GameRegistry.findItem("Natura", "NetherBerryBush"), 15, 64);
-
 		}
-
 		if(ModData.allowNaturaPlantsToBeComposted) {
 			for(int i = 0; i < 5; i++) {
 				CompostRegistry.register(GameRegistry.findItem("Natura", "Rare Sapling"), i, 0.125f, ColorRegistry.color("oak"));
@@ -56,5 +48,4 @@ public class Natura {
 			}
 		}
 	}
-
 }

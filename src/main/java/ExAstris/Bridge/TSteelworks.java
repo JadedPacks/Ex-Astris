@@ -11,9 +11,7 @@ import tconstruct.smeltery.TinkerSmeltery;
 import toops.tsteelworks.api.PluginFactory;
 import toops.tsteelworks.api.highoven.ISmeltingRegistry;
 
-
 public class TSteelworks {
-
 	private static ISmeltingRegistry Instance;
 
 	public static void Initialize() {
@@ -28,7 +26,6 @@ public class TSteelworks {
 			Instance.addMeltable(new ItemStack(ExAstrisBlock.cobaltOreBlock, 1, 2), true, new FluidStack(TinkerSmeltery.moltenCobaltFluid, MoltenData.ingotCostHighoven), 650);
 			Instance.addMeltable(new ItemStack(ExAstrisBlock.arditeOreBlock, 1, 2), true, new FluidStack(TinkerSmeltery.moltenArditeFluid, MoltenData.ingotCostHighoven), 650);
 		}
-
 		addMeltableOre(new ItemStack(GameRegistry.findBlock("exnihilo", "iron_dust"), 0), new FluidStack(TinkerSmeltery.moltenIronFluid, MoltenData.ingotCostHighoven), 600);
 		addMeltableOre(new ItemStack(GameRegistry.findBlock("exnihilo", "gold_dust"), 0), new FluidStack(TinkerSmeltery.moltenGoldFluid, MoltenData.ingotCostHighoven), 400);
 		addMeltableOre(new ItemStack(GameRegistry.findBlock("exnihilo", "copper_dust"), 0), new FluidStack(TinkerSmeltery.moltenCopperFluid, MoltenData.ingotCostHighoven), 550);
@@ -38,7 +35,6 @@ public class TSteelworks {
 		addMeltableOre(new ItemStack(GameRegistry.findBlock("exnihilo", "nickel_dust"), 0), new FluidStack(TinkerSmeltery.moltenNickelFluid, MoltenData.ingotCostHighoven), 400);
 		addMeltableOre(new ItemStack(GameRegistry.findBlock("exnihilo", "platinum_dust"), 0), new FluidStack(TinkerSmeltery.moltenShinyFluid, MoltenData.ingotCostHighoven), 400);
 		addMeltableOre(new ItemStack(GameRegistry.findBlock("exnihilo", "aluminum_dust"), 0), new FluidStack(TinkerSmeltery.moltenAluminumFluid, MoltenData.ingotCostHighoven), 400);
-
 	}
 
 	public static void addMeltableOre(ItemStack stack, FluidStack output, int temperature) {

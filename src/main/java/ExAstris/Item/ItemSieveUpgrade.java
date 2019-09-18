@@ -13,7 +13,6 @@ import net.minecraft.util.IIcon;
 import java.util.List;
 
 public class ItemSieveUpgrade extends Item {
-
 	public IIcon[] blockIcons = new IIcon[2];
 
 	public ItemSieveUpgrade() {
@@ -51,5 +50,4 @@ public class ItemSieveUpgrade extends Item {
 	public IIcon getIconFromDamage(int i) {
 		return this.blockIcons[i];
 	}
-
 }

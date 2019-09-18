@@ -1,6 +1,5 @@
 package ExAstris.Bridge;
 
-
 import ExAstris.Item.ItemCrookRF;
 import ExAstris.Item.ItemHammerRF;
 import net.minecraft.item.Item;

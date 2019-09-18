@@ -11,7 +11,6 @@ import thaumcraft.api.IRepairable;
 
 @Interface(iface = "thaumcraft.api.IRepairable", modid = "Thaumcraft")
 public class ItemHammerThaumium extends ItemHammerBase implements IRepairable {
-
 	public ItemHammerThaumium() {
 		super(ToolMaterial.EMERALD);
 		setCreativeTab(ExAstris.ExAstris.ExAstrisTab);

@@ -5,7 +5,6 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
 public class CreativeTabExAstris extends CreativeTabs {
-
 	public CreativeTabExAstris(int id) {
 		super(id, "ExAstrisTab");
 	}
@@ -14,5 +13,4 @@ public class CreativeTabExAstris extends CreativeTabs {
 	public Item getTabIconItem() {
 		return ENItems.Crook;
 	}
-
 }

@@ -20,7 +20,6 @@ public class ThermalExpansion {
 		if(ModData.allowThermalExpansionHive) {
 			addHiveRegistry();
 		}
-
 	}
 
 	public static void addHiveRegistry() {
@@ -42,7 +41,6 @@ public class ThermalExpansion {
 			if(Loader.isModLoaded("MineFactoryReloaded")) {
 				ThermalExpansionHelper.addTransposerFill(10000, new ItemStack(GameRegistry.findBlock("exnihilo", "bee_trap_treated")), new ItemStack(GameRegistry.findBlock("ExtraBees", "hive"), 1, 3), new FluidStack(FluidRegistry.getFluid("milk"), 8000), false);
 			}
-
 		}
 	}
 
@@ -52,16 +50,12 @@ public class ThermalExpansion {
 			HeatRegistry.register(GameRegistry.findBlock("ThermalFoundation", "FluidPyrotheum"), 0, 0.7F);
 			HeatRegistry.register(GameRegistry.findBlock("ThermalFoundation", "FluidCryotheum"), 0.2F);
 			HeatRegistry.register(GameRegistry.findBlock("ThermalFoundation", "FluidCryotheum"), 0, 0.3F);
-
 		}
-
 	}
-
 
 	public static void summonBlizz(World worldObj, double x, double y, double z) {
 		EntityBlizz peck = new EntityBlizz(worldObj);
 		peck.setPosition(x, y, z);
-
 		worldObj.spawnEntityInWorld(peck);
 	}
 }

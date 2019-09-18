@@ -13,34 +13,26 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
 public class ContainerHammerAutomatic extends Container {
-
 	public TileEntityHammerAutomatic hammer;
 	private int lastEnergy;
 
-	public ContainerHammerAutomatic(InventoryPlayer invPlayer,
-	                                TileEntityHammerAutomatic entity) {
+	public ContainerHammerAutomatic(InventoryPlayer invPlayer, TileEntityHammerAutomatic entity) {
 		hammer = entity;
 		this.addSlotToContainer(new SlotHammerAutomatic(hammer, 0, 8, 35));
-
 		int i;
-
 		for(i = 0; i < 4; ++i) {
 			for(int j = 0; j < 5; ++j) {
 				this.addSlotToContainer(new SlotClosed(hammer, 1 + (i * 5) + j, 57 + (j * 18), 8 + (i * 18)));
 			}
 		}
-
 		for(i = 0; i < 3; ++i) {
 			for(int j = 0; j < 9; ++j) {
 				this.addSlotToContainer(new Slot(invPlayer, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
 			}
 		}
-
-
 		for(i = 0; i < 9; ++i) {
 			this.addSlotToContainer(new Slot(invPlayer, i, 8 + i * 18, 142));
 		}
-
 		this.addSlotToContainer(new SlotHammerAutomatic(hammer, 21, 8, 62));
 		this.addSlotToContainer(new SlotHammerAutomatic(hammer, 22, 33, 62));
 	}
@@ -52,7 +44,6 @@ public class ContainerHammerAutomatic extends Container {
 
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer player, int slotNum) {
-
 		ItemStack stack = null;
 		Slot slot = this.getSlot(slotNum);
 		if(slot != null & slot.getHasStack()) {
@@ -76,14 +67,11 @@ public class ContainerHammerAutomatic extends Container {
 					return null;
 				}
 			}
-
-
 			if(stackInSlot.stackSize == 0) {
 				slot.putStack(null);
 			} else {
 				slot.onSlotChanged();
 			}
-
 			if(stackInSlot.stackSize == stack.stackSize) {
 				return null;
 			}
@@ -109,5 +97,4 @@ public class ContainerHammerAutomatic extends Container {
 	public void updateProgressBar(int par1, int par2) {
 		hammer.setEnergyStored(par2);
 	}
-
 }

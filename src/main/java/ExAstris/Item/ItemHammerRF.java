@@ -35,7 +35,7 @@ public class ItemHammerRF extends ItemToolRF implements IHammer {
 
 	@Override
 	public float getDigSpeed(ItemStack item, Block block, int meta) {
-		if (HammerRegistry.registered(new ItemStack(block, 1, meta)) && block.getHarvestLevel(meta) <= this.toolMaterial.getHarvestLevel()) {
+		if(HammerRegistry.registered(new ItemStack(block, 1, meta)) && block.getHarvestLevel(meta) <= this.toolMaterial.getHarvestLevel()) {
 			if(isEmpowered(item)) {
 				return efficiencyOnProperMaterial * 6.0f;
 			} else if(getEnergyStored(item) >= getEnergyPerUse(item)) {
@@ -70,5 +70,4 @@ public class ItemHammerRF extends ItemToolRF implements IHammer {
 	public EnumRarity getRarity(ItemStack itemStack) {
 		return EnumRarity.uncommon;
 	}
-
 }

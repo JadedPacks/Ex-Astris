@@ -10,7 +10,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 
 public class Witchery {
-
 	public static void init() {
 		addSifting();
 		if(ModData.witcheryEnableCovenWitch) {
@@ -29,5 +28,4 @@ public class Witchery {
 	private static Class covenWitchClass() {
 		return EntityCovenWitch.class;
 	}
-
 }

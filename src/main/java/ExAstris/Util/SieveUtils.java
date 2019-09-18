@@ -7,7 +7,6 @@ import net.minecraft.item.ItemStack;
 import java.util.HashMap;
 
 public class SieveUtils {
-
 	private static HashMap<ItemInfo, Boolean> registryCache = new HashMap<ItemInfo, Boolean>();
 
 	public static boolean registered(ItemStack item) {
@@ -19,7 +18,9 @@ public class SieveUtils {
 			} else {
 				registryCache.put(new ItemInfo(item), false);
 			}
-		} else return allowed;
+		} else {
+			return allowed;
+		}
 		return false;
 	}
 }

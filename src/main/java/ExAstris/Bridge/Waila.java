@@ -22,44 +22,42 @@ import java.text.DecimalFormat;
 import java.util.List;
 
 public class Waila implements IWailaDataProvider {
+	public static void callbackRegister(IWailaRegistrar registrar) {
+		Waila instance = new Waila();
+		registrar.registerBodyProvider(instance, BlockBarrelThaumium.class);
+		registrar.registerBodyProvider(instance, BlockSieveAutomatic.class);
+		registrar.registerBodyProvider(instance, BlockQStronglyCompressedStone.class);
+	}
 
 	@Override
-	public ItemStack getWailaStack(IWailaDataAccessor accessor,
-	                               IWailaConfigHandler config) {
+	public ItemStack getWailaStack(IWailaDataAccessor accessor, IWailaConfigHandler config) {
 		return null;
 	}
 
 	@Override
-	public List<String> getWailaHead(ItemStack stack, List<String> currentTip,
-	                                 IWailaDataAccessor accessor, IWailaConfigHandler config) {
+	public List<String> getWailaHead(ItemStack stack, List<String> currentTip, IWailaDataAccessor accessor, IWailaConfigHandler config) {
 		return currentTip;
 	}
 
 	@Override
-	public List<String> getWailaBody(ItemStack stack, List<String> currentTip,
-	                                 IWailaDataAccessor accessor, IWailaConfigHandler config) {
+	public List<String> getWailaBody(ItemStack stack, List<String> currentTip, IWailaDataAccessor accessor, IWailaConfigHandler config) {
 		if(accessor.getBlock() instanceof BlockBarrelThaumium) {
-			TileEntityBarrelThaumium teBarrel = (TileEntityBarrelThaumium) accessor
-				                                                               .getTileEntity();
+			TileEntityBarrelThaumium teBarrel = (TileEntityBarrelThaumium) accessor.getTileEntity();
 			currentTip.add(getBarrelDisplay(teBarrel.getMode(), teBarrel));
 		} else if(accessor.getBlock() instanceof BlockSieveAutomatic) {
-			TileEntitySieveAutomatic teSieve = (TileEntitySieveAutomatic) accessor
-				                                                              .getTileEntity();
+			TileEntitySieveAutomatic teSieve = (TileEntitySieveAutomatic) accessor.getTileEntity();
 			currentTip.add(getSieveDisplay(teSieve));
 		} else if(accessor.getBlock() instanceof BlockQStronglyCompressedStone) {
-			TileEntityStronglyCompressedStone scStone = (TileEntityStronglyCompressedStone) accessor
-				                                                                                .getTileEntity();
+			TileEntityStronglyCompressedStone scStone = (TileEntityStronglyCompressedStone) accessor.getTileEntity();
 			currentTip.add(getSCStoneDisplay(scStone));
 		}
 		return currentTip;
 	}
 
 	@Override
-	public List<String> getWailaTail(ItemStack stack, List<String> currentTip,
-	                                 IWailaDataAccessor accessor, IWailaConfigHandler config) {
+	public List<String> getWailaTail(ItemStack stack, List<String> currentTip, IWailaDataAccessor accessor, IWailaConfigHandler config) {
 		if(accessor.getBlock() instanceof BlockSieveAutomatic) {
-			TileEntitySieveAutomatic teSieve = (TileEntitySieveAutomatic) accessor
-				                                                              .getTileEntity();
+			TileEntitySieveAutomatic teSieve = (TileEntitySieveAutomatic) accessor.getTileEntity();
 			currentTip.add(getSieveDisplayTail(teSieve));
 		}
 		return currentTip;
@@ -74,35 +72,29 @@ public class Waila implements IWailaDataProvider {
 				if(barrel.isFull()) {
 					return barrel.fluid.getFluid().getName();
 				} else {
-					return barrel.fluid.getFluid().getName() + " "
-						       + format.format(barrel.getVolume() * 100) + "%";
+					return barrel.fluid.getFluid().getName() + " " + format.format(barrel.getVolume() * 100) + "%";
 				}
 			case COMPOST:
 				if(barrel.isFull()) {
-					return "Composting: "
-						       + Math.round(getBarrelTimeRemaining(barrel)) + "%";
+					return "Composting: " + Math.round(getBarrelTimeRemaining(barrel)) + "%";
 				} else {
-					return "Collecting Material: "
-						       + format.format(barrel.getVolume() * 100) + "%";
+					return "Collecting Material: " + format.format(barrel.getVolume() * 100) + "%";
 				}
 			case DIRT:
 				return "Dirt";
 			case CLAY:
 				return "Clay";
 			case MILKED:
-				return "Sliming: " + Math.round(getBarrelTimeRemaining(barrel))
-					       + "%";
+				return "Sliming: " + Math.round(getBarrelTimeRemaining(barrel)) + "%";
 			case SLIME:
 				return "Slime";
 			case SPORED:
-				return "Transforming: "
-					       + Math.round(getBarrelTimeRemaining(barrel)) + "%";
+				return "Transforming: " + Math.round(getBarrelTimeRemaining(barrel)) + "%";
 			case ENDER_COOKING:
 			case BLAZE_COOKING:
 			case PECK_COOKING:
 			case BLIZZ_COOKING:
-				return "Summoning: " + Math.round(getBarrelTimeRemaining(barrel))
-					       + "%";
+				return "Summoning: " + Math.round(getBarrelTimeRemaining(barrel)) + "%";
 			case ENDER:
 			case BLAZE:
 			case PECK:
@@ -154,22 +146,12 @@ public class Waila implements IWailaDataProvider {
 		return (barrel.getTimer() / (float) 1000) * 100;
 	}
 
-	public static void callbackRegister(IWailaRegistrar registrar) {
-		Waila instance = new Waila();
-		registrar.registerBodyProvider(instance, BlockBarrelThaumium.class);
-		registrar.registerBodyProvider(instance, BlockSieveAutomatic.class);
-		registrar.registerBodyProvider(instance, BlockQStronglyCompressedStone.class);
-	}
-
 	public float getSieveClicksRemaining(TileEntitySieveAutomatic sieve) {
 		return (sieve.getVolume() / 1) * 100;
 	}
 
-
 	@Override
-	public NBTTagCompound getNBTData(EntityPlayerMP player, TileEntity te,  NBTTagCompound tag, World world, int x, int y, int z) {
+	public NBTTagCompound getNBTData(EntityPlayerMP player, TileEntity te, NBTTagCompound tag, World world, int x, int y, int z) {
 		return null;
 	}
-
-
 }

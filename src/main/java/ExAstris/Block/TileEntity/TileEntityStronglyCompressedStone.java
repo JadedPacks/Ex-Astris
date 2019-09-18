@@ -8,9 +8,9 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 
 public class TileEntityStronglyCompressedStone extends TileEntity {
+	private static final int UPDATE_INTERVAL = 20;
 	private int timer;
 	private float volume;
-	private static final int UPDATE_INTERVAL = 20;
 
 	public TileEntityStronglyCompressedStone() {
 		super();
@@ -28,9 +28,7 @@ public class TileEntityStronglyCompressedStone extends TileEntity {
 		}
 		if(volume > 1.0f) {
 			worldObj.setBlock(xCoord, yCoord, zCoord, Blocks.bedrock, 0, 3);
-
 		}
-
 	}
 
 	@Override
@@ -51,7 +49,6 @@ public class TileEntityStronglyCompressedStone extends TileEntity {
 	public Packet getDescriptionPacket() {
 		NBTTagCompound tag = new NBTTagCompound();
 		this.writeToNBT(tag);
-
 		return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, this.blockMetadata, tag);
 	}
 

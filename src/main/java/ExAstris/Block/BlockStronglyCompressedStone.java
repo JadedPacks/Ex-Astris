@@ -27,7 +27,6 @@ public class BlockStronglyCompressedStone extends Block {
 	@Override
 	public void registerIcons(IIconRegister register) {
 		icon = new IIcon[3];
-
 		for(int i = 0; i < icon.length; i++) {
 			icon[i] = register.registerIcon(ModData.ID + ":scstone" + i);
 		}
@@ -52,5 +51,4 @@ public class BlockStronglyCompressedStone extends Block {
 	public int damageDropped(int meta) {
 		return meta;
 	}
-
 }

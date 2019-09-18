@@ -28,31 +28,19 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class TileEntityHammerAutomatic extends TileEntity implements IEnergyHandler, ISidedInventory {
-
+	private static final int UPDATE_INTERVAL = 20;
 	public EnergyStorage storage = new EnergyStorage(64000);
-	private int energyPerCycle = ModData.hammerAutomaticBaseEnergy;
-	private float processingInterval = 0.005f;
-	protected ItemStack[] inventory;
 	public HammerMode mode;
 	public Block content;
 	public int contentMeta;
 	public ItemStack stackInProgress;
-
+	protected ItemStack[] inventory;
+	private int energyPerCycle = ModData.hammerAutomaticBaseEnergy;
+	private float processingInterval = 0.005f;
 	private float volume = 0;
 	private boolean particleMode;
 	private boolean update = false;
-	private static final int UPDATE_INTERVAL = 20;
-
 	private int timer = 0;
-
-	public enum HammerMode {
-		EMPTY(0),
-		FILLED(1);
-
-		HammerMode(int v) {this.value = v;}
-
-		public int value;
-	}
 
 	public TileEntityHammerAutomatic() {
 		this.inventory = new ItemStack[getSizeInventory()];
@@ -64,7 +52,6 @@ public class TileEntityHammerAutomatic extends TileEntity implements IEnergyHand
 		if(timer >= UPDATE_INTERVAL) {
 			timer = 0;
 			//disableParticles();
-
 			if(update) {
 				update();
 			}
@@ -78,7 +65,6 @@ public class TileEntityHammerAutomatic extends TileEntity implements IEnergyHand
 					stackInProgress.stackSize = 1;
 					decrStackSize(0, 1);
 					storage.extractEnergy(getEffectiveEnergy(), false);
-
 				}
 			} else if(mode != HammerMode.EMPTY) {
 				processContents();
@@ -89,9 +75,7 @@ public class TileEntityHammerAutomatic extends TileEntity implements IEnergyHand
 	public void addHammerable(Block block, int blockMeta) {
 		this.content = block;
 		this.contentMeta = blockMeta;
-
 		this.mode = HammerMode.FILLED;
-
 		volume = 1.0f;
 		worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 	}
@@ -99,19 +83,15 @@ public class TileEntityHammerAutomatic extends TileEntity implements IEnergyHand
 	public void processContents() {
 		volume -= getEffectiveSpeed();
 		storage.extractEnergy(getEffectiveEnergy(), false);
-
 		if(volume <= 0) {
 			mode = HammerMode.EMPTY;
 			//give rewards!
 			if(!worldObj.isRemote) {
-
 				ArrayList<Smashable> rewards = HammerRegistry.getRewards(content, contentMeta);
 				if(rewards.size() > 0) {
-
 					Iterator<Smashable> it = rewards.iterator();
 					while(it.hasNext()) {
 						Smashable reward = it.next();
-
 						int size = getSizeInventory() - 2;
 						int inventoryIndex = 0;
 						if(worldObj.rand.nextFloat() <= reward.chance + (reward.luckMultiplier * getFortuneModifier())) {
@@ -126,8 +106,6 @@ public class TileEntityHammerAutomatic extends TileEntity implements IEnergyHand
 									}
 								}
 							}
-
-
 							if(inventoryIndex != 0) {
 								if(inventory[inventoryIndex] != null) {
 									inventory[inventoryIndex] = new ItemStack(reward.item, (inventory[inventoryIndex].stackSize + 1), reward.meta);
@@ -136,14 +114,11 @@ public class TileEntityHammerAutomatic extends TileEntity implements IEnergyHand
 								}
 							} else {
 								EntityItem entityitem = new EntityItem(worldObj, (double) xCoord + 0.5D, (double) yCoord + 1.5D, (double) zCoord + 0.5D, new ItemStack(reward.item, 1, reward.meta));
-
 								double f3 = 0.05F;
 								entityitem.motionX = worldObj.rand.nextGaussian() * f3;
 								entityitem.motionY = (0.2d);
 								entityitem.motionZ = worldObj.rand.nextGaussian() * f3;
-
 								worldObj.spawnEntityInWorld(entityitem);
-
 							}
 						}
 					}
@@ -154,16 +129,13 @@ public class TileEntityHammerAutomatic extends TileEntity implements IEnergyHand
 		} else {
 			particleMode = true;
 		}
-
 		update = true;
 	}
 
 	@SideOnly(Side.CLIENT)
 	private void spawnCrushParticles() {
 		for(int i = 0; i < 10; i++) {
-			EntityDiggingFX particle = new EntityDiggingFX(worldObj, xCoord + 0.5, yCoord + 5d / 16d, zCoord + 0.5, 0, 0, 0,
-				Block.getBlockFromItem(stackInProgress.getItem()), stackInProgress.getMetadata()
-			);
+			EntityDiggingFX particle = new EntityDiggingFX(worldObj, xCoord + 0.5, yCoord + 5d / 16d, zCoord + 0.5, 0, 0, 0, Block.getBlockFromItem(stackInProgress.getItem()), stackInProgress.getMetadata());
 			particle.setVelocity((worldObj.rand.nextDouble() / 2) - 0.25, 0, (worldObj.rand.nextDouble() / 2) - 0.25);
 			Minecraft.getMinecraft().effectRenderer.addEffect(particle);
 		}
@@ -218,7 +190,6 @@ public class TileEntityHammerAutomatic extends TileEntity implements IEnergyHand
 		if(stack != null && stack.stackSize > getInventoryStackLimit()) {
 			stack.stackSize = getInventoryStackLimit();
 		}
-
 	}
 
 	@Override
@@ -242,10 +213,12 @@ public class TileEntityHammerAutomatic extends TileEntity implements IEnergyHand
 	}
 
 	@Override
-	public void openChest() {}
+	public void openChest() {
+	}
 
 	@Override
-	public void closeChest() {}
+	public void closeChest() {
+	}
 
 	@Override
 	public boolean isItemValidForSlot(int slot, ItemStack stack) {
@@ -287,12 +260,10 @@ public class TileEntityHammerAutomatic extends TileEntity implements IEnergyHand
 	@Override
 	public void readFromNBT(NBTTagCompound compound) {
 		super.readFromNBT(compound);
-
 		switch(compound.getInteger("mode")) {
 			case 0:
 				mode = HammerMode.EMPTY;
 				break;
-
 			case 1:
 				mode = HammerMode.FILLED;
 				break;
@@ -307,14 +278,11 @@ public class TileEntityHammerAutomatic extends TileEntity implements IEnergyHand
 		particleMode = compound.getBoolean("particles");
 		this.processingInterval = compound.getFloat("speed");
 		storage.readFromNBT(compound);
-
 		NBTTagList nbttaglist = compound.getTagList("Items", 10);
 		this.inventory = new ItemStack[this.getSizeInventory()];
-
 		for(int i = 0; i < nbttaglist.tagCount(); ++i) {
 			NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
 			byte b0 = nbttagcompound1.getByte("Slot");
-
 			if(b0 >= 0 && b0 < this.inventory.length) {
 				this.inventory[b0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
 			}
@@ -336,9 +304,7 @@ public class TileEntityHammerAutomatic extends TileEntity implements IEnergyHand
 		compound.setBoolean("particles", particleMode);
 		compound.setFloat("speed", processingInterval);
 		storage.writeToNBT(compound);
-
 		NBTTagList nbttaglist = new NBTTagList();
-
 		for(int i = 0; i < this.inventory.length; ++i) {
 			if(this.inventory[i] != null) {
 				NBTTagCompound nbttagcompound1 = new NBTTagCompound();
@@ -347,7 +313,6 @@ public class TileEntityHammerAutomatic extends TileEntity implements IEnergyHand
 				nbttaglist.appendTag(nbttagcompound1);
 			}
 		}
-
 		compound.setTag("Items", nbttaglist);
 	}
 
@@ -355,7 +320,6 @@ public class TileEntityHammerAutomatic extends TileEntity implements IEnergyHand
 	public Packet getDescriptionPacket() {
 		NBTTagCompound tag = new NBTTagCompound();
 		this.writeToNBT(tag);
-
 		return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, this.blockMetadata, tag);
 	}
 
@@ -420,5 +384,13 @@ public class TileEntityHammerAutomatic extends TileEntity implements IEnergyHand
 		storage.setEnergyStored(energy);
 	}
 
+	public enum HammerMode {
+		EMPTY(0),
+		FILLED(1);
+		public int value;
 
+		HammerMode(int v) {
+			this.value = v;
+		}
+	}
 }

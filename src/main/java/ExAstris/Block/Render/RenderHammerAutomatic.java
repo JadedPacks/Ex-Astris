@@ -10,7 +10,6 @@ import org.lwjgl.opengl.GL11;
 
 public class RenderHammerAutomatic extends TileEntitySpecialRenderer {
 	private static EntityItem item;
-
 	private final float amntMaxRaise = 0.31f;
 	private final float percShowItem = 0.60f;
 
@@ -19,16 +18,12 @@ public class RenderHammerAutomatic extends TileEntitySpecialRenderer {
 		if(item == null) {
 			item = new EntityItem(tileentity.getWorld());
 		}
-
 		float percMaxRaise = 0.90f;
-
 		GL11.glPushMatrix();
 		GL11.glTranslated(x + 0.5, y, z + 0.5);
-
 		TileEntityHammerAutomatic tile = (TileEntityHammerAutomatic) tileentity;
 		float prog = 1 - tile.getVolume(); // volume counts down to 0, need to invert that
 		ItemStack stack = tile.stackInProgress;
-
 		// show the item to be squashed
 		if(prog >= percShowItem && stack != null) {
 			GL11.glPushMatrix();
@@ -40,18 +35,14 @@ public class RenderHammerAutomatic extends TileEntitySpecialRenderer {
 			RenderManager.instance.renderEntityWithPosYaw(item, 0.0D, 0.0D, 0.0D, 0.0F, 0.0F);
 			GL11.glPopMatrix();
 		}
-
 		// on the way down
 		if(prog > percMaxRaise) {
 			percMaxRaise = 1 - percMaxRaise;
 			prog = 1 - prog;
 		}
-
 		// cut off floating point errors to prevent "bounce" at the bottom
 		float translate = Math.max(0, amntMaxRaise * (prog / percMaxRaise));
-
 		GL11.glTranslatef(0, translate, 0);
-
 		bindTexture(RenderBlockHammer.texture_arm);
 		RenderBlockHammer.model_arm.renderAll();
 		GL11.glPopMatrix();

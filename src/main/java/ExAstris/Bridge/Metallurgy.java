@@ -24,7 +24,6 @@ public class Metallurgy {
 		if(ModData.allowMetallurgyOres) {
 			RegistryFactory.HammerOreRegistryFactory(ExAstrisBlock.eximiteOreBlock, ExAstrisItem.eximiteOreItem);
 			RegistryFactory.HammerOreRegistryFactory(ExAstrisBlock.meutoiteOreBlock, ExAstrisItem.meutoiteOreItem);
-
 			RegistryFactory.HammerOreRegistryFactory(ExAstrisBlock.prometheumOreBlock, ExAstrisItem.prometheumOreItem);
 			RegistryFactory.HammerOreRegistryFactory(ExAstrisBlock.deepironOreBlock, ExAstrisItem.deepironOreItem);
 			RegistryFactory.HammerOreRegistryFactory(ExAstrisBlock.infuscoliumOreBlock, ExAstrisItem.infuscoliumOreItem);
@@ -36,7 +35,6 @@ public class Metallurgy {
 			RegistryFactory.HammerOreRegistryFactory(ExAstrisBlock.orichalcumOreBlock, ExAstrisItem.orichalcumOreItem);
 			RegistryFactory.HammerOreRegistryFactory(ExAstrisBlock.adamantineOreBlock, ExAstrisItem.adamantineOreItem);
 			RegistryFactory.HammerOreRegistryFactory(ExAstrisBlock.atlarusOreBlock, ExAstrisItem.atlarusOreItem);
-
 			RegistryFactory.HammerOreRegistryFactory(ExAstrisBlock.ignatiusOreBlock, ExAstrisItem.ignatiusOreItem);
 			RegistryFactory.HammerOreRegistryFactory(ExAstrisBlock.shadowironOreBlock, ExAstrisItem.shadowironOreItem);
 			RegistryFactory.HammerOreRegistryFactory(ExAstrisBlock.lemuriteOreBlock, ExAstrisItem.lemuriteOreItem);
@@ -47,12 +45,9 @@ public class Metallurgy {
 			RegistryFactory.HammerOreRegistryFactory(ExAstrisBlock.kalendriteOreBlock, ExAstrisItem.kalendriteOreItem);
 			RegistryFactory.HammerOreRegistryFactory(ExAstrisBlock.vulcaniteOreBlock, ExAstrisItem.vulcaniteOreItem);
 			RegistryFactory.HammerOreRegistryFactory(ExAstrisBlock.sanguiniteOreBlock, ExAstrisItem.sanguiniteOreItem);
-
 			OreRegistry.createOverworldOre("zinc", new Color("bfc55c"), 64, GameRegistry.findItem("Metallurgy", "zinc.ingot"), false);
 			//OreList.addOreToGenerate(new OreType("zinc", new Color("bfc55c"), OreDimension.OVERWORLD, 64, GameRegistry.findItem("Metallurgy", "zinc.ingot"), false));
 		}
-
-
 	}
 
 	public static void addSieveRegistry() {
@@ -69,11 +64,8 @@ public class Metallurgy {
 			SieveRegistry.register(Blocks.gravel, 0, GameRegistry.findItem("Metallurgy", "utility.item"), 4, 128);
 			//potash
 			SieveRegistry.register(Blocks.gravel, 0, GameRegistry.findItem("Metallurgy", "utility.item"), 5, 128);
-
-
 			SieveRegistry.register(ENBlocks.EnderGravel, 0, ExAstrisItem.eximiteOreItem, 0, 128);
 			SieveRegistry.register(ENBlocks.EnderGravel, 0, ExAstrisItem.meutoiteOreItem, 0, 128);
-
 			RegistryFactory.SieveOreRegistryFactory(ExAstrisItem.prometheumOreItem);
 			RegistryFactory.SieveOreRegistryFactory(ExAstrisItem.deepironOreItem);
 			RegistryFactory.SieveOreRegistryFactory(ExAstrisItem.infuscoliumOreItem);
@@ -85,7 +77,6 @@ public class Metallurgy {
 			RegistryFactory.SieveOreRegistryFactory(ExAstrisItem.orichalcumOreItem);
 			RegistryFactory.SieveOreRegistryFactory(ExAstrisItem.adamantineOreItem);
 			RegistryFactory.SieveOreRegistryFactory(ExAstrisItem.atlarusOreItem);
-
 			SieveRegistry.register(ENBlocks.NetherGravel, 0, ExAstrisItem.ignatiusOreItem, 0, 128);
 			SieveRegistry.register(ENBlocks.NetherGravel, 0, ExAstrisItem.shadowironOreItem, 0, 128);
 			SieveRegistry.register(ENBlocks.NetherGravel, 0, ExAstrisItem.lemuriteOreItem, 0, 128);

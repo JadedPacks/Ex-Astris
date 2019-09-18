@@ -7,7 +7,6 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
 public class ItemBlockRotaryAlveary extends ItemBlock {
-
 	public ItemBlockRotaryAlveary(Block block) {
 		super(block);
 	}

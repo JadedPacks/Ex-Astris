@@ -22,9 +22,7 @@ public class BlockQStronglyCompressedStone extends BlockContainer {
 		setHarvestLevel("pickaxe", 3);
 		setResistance(6000.0f);
 		setCreativeTab(ExAstris.ExAstris.ExAstrisTab);
-
 		GameRegistry.registerTileEntity(TileEntityStronglyCompressedStone.class, this.getUnlocalizedName());
-
 	}
 
 	@Override
@@ -42,7 +40,6 @@ public class BlockQStronglyCompressedStone extends BlockContainer {
 	public String getUnlocalizedName() {
 		return ModData.ID + "." + BlockData.STRONGLY_COMPRESSED_STONE_UNLOCALIZED_NAME + "3";
 	}
-
 
 	@Override
 	public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {

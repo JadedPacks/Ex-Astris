@@ -38,7 +38,6 @@ public class BlockSieveAutomatic extends BlockContainer implements IDismantleabl
 		super(Material.iron);
 		setCreativeTab(ExAstris.ExAstris.ExAstrisTab);
 		setHardness(2.0f);
-
 		setUnlocalizedName(ModData.ID + "." + BlockData.SIEVE_AUTOMATIC_KEY);
 		GameRegistry.registerTileEntity(TileEntitySieveAutomatic.class, ModData.ID + "." + BlockData.SIEVE_AUTOMATIC_KEY);
 	}
@@ -59,7 +58,6 @@ public class BlockSieveAutomatic extends BlockContainer implements IDismantleabl
 	@Override
 	public void breakBlock(World world, int x, int y, int z, Block block, int meta) {
 		TileEntity tile = world.getTileEntity(x, y, z);
-
 		ISidedInventory inv = (ISidedInventory) tile;
 		for(int i = 0; i < inv.getSizeInventory(); i++) {
 			if(inv.getStackInSlot(i) != null) {
@@ -100,14 +98,12 @@ public class BlockSieveAutomatic extends BlockContainer implements IDismantleabl
 		return new TileEntitySieveAutomatic();
 	}
 
-
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
 		PlayerInteractEvent e = new PlayerInteractEvent(player, Action.RIGHT_CLICK_BLOCK, x, y, z, side, world);
 		if(MinecraftForge.EVENT_BUS.post(e) || e.getResult() == Result.DENY || e.useBlock == Result.DENY) {
 			return false;
 		}
-
 		if(!player.isSneaking()) {
 			player.openGui(ExAstris.ExAstris.instance, 0, world, x, y, z);
 			return true;
@@ -118,13 +114,11 @@ public class BlockSieveAutomatic extends BlockContainer implements IDismantleabl
 	@Override
 	public ArrayList<ItemStack> dismantleBlock(EntityPlayer player, World world, int x, int y, int z, boolean returnDrops) {
 		TileEntitySieveAutomatic te = (TileEntitySieveAutomatic) world.getTileEntity(x, y, z);
-
 		ItemStack stack = new ItemStack(this);
 		if(stack.stackTagCompound == null) {
 			stack.stackTagCompound = new NBTTagCompound();
 		}
 		stack.stackTagCompound.setInteger("energy", te.getEnergyStored(null));
-
 		ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
 		ret.add(stack);
 		world.setBlockToAir(x, y, z);
@@ -144,8 +138,6 @@ public class BlockSieveAutomatic extends BlockContainer implements IDismantleabl
 			TileEntitySieveAutomatic sieve = (TileEntitySieveAutomatic) world.getTileEntity(x, y, z);
 			sieve.setEnergyStored(stack.stackTagCompound.getInteger("energy"));
 		}
-
 		super.onBlockPlacedBy(world, x, y, z, player, stack);
-
 	}
 }

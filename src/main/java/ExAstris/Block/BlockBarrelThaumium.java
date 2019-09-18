@@ -47,7 +47,6 @@ public class BlockBarrelThaumium extends BlockContainer {
 		setCreativeTab(ExAstris.ExAstris.ExAstrisTab);
 		setHardness(4.0f);
 		setBlockBounds(0.1F, 0.0F, 0.1F, 0.9F, 1.0F, 0.9F);
-
 		setUnlocalizedName(ModData.ID + "." + BlockData.BARREL_THAUMIUM_KEY);
 		GameRegistry.registerTileEntity(TileEntityBarrelThaumium.class, this.getUnlocalizedName());
 	}
@@ -62,7 +61,6 @@ public class BlockBarrelThaumium extends BlockContainer {
 	public void getSubBlocks(Item item, CreativeTabs tabs, List subItems) {
 		subItems.add(new ItemStack(item, 1, 0));
 	}
-
 
 	@Override
 	public int damageDropped(int metadata) {
@@ -85,21 +83,17 @@ public class BlockBarrelThaumium extends BlockContainer {
 		if(player == null) {
 			return false;
 		}
-
 		TileEntityBarrelThaumium barrel = (TileEntityBarrelThaumium) world.getTileEntity(x, y, z);
-
 		if(barrel.getMode().canExtract == ExtractMode.Always || (world.difficultySetting.getDifficultyId() == 0 && barrel.getMode().canExtract == ExtractMode.PeacefulOnly)) {
 			barrel.giveAppropriateItem();
 		} else if(player.getCurrentEquippedItem() != null) {
 			ItemStack item = player.getCurrentEquippedItem();
 			if(item != null) {
-
 				//COMPOST!
 				if(exnihilo.data.ModData.ALLOW_BARREL_RECIPE_DIRT) {
 					if(barrel.getMode() == BarrelMode.EMPTY || barrel.getMode() == BarrelMode.COMPOST && !barrel.isFull()) {
 						if(CompostRegistry.containsItem(item.getItem(), item.getMetadata())) {
 							barrel.addCompostItem(CompostRegistry.getItem(item.getItem(), item.getMetadata()));
-
 							if(!player.capabilities.isCreativeMode) {
 								item.stackSize -= 1;
 								if(item.stackSize == 0) {
@@ -113,20 +107,15 @@ public class BlockBarrelThaumium extends BlockContainer {
 						//						}
 					}
 				}
-
-
 				//FLUIDS!
 				if(barrel.getMode() == BarrelMode.EMPTY || barrel.getMode() == BarrelMode.FLUID) {
 					FluidStack fluid = FluidContainerRegistry.getFluidForFilledItem(item);
 					//FILL
 					if(fluid != null) {
-
 						int capacity = barrel.fill(ForgeDirection.UP, fluid, false);
-
 						if(capacity > 0) //&& fluid.getFluidID() == FluidRegistry.WATER.getID())
 						{
 							barrel.fill(ForgeDirection.UP, fluid, true);
-
 							if(!player.capabilities.isCreativeMode) {
 								if(item.getItem() == Items.potionitem && item.getMetadata() == 0) {
 									player.inventory.setInventorySlotContents(player.inventory.currentItem, new ItemStack(Items.glass_bottle, 1, 0));
@@ -143,7 +132,6 @@ public class BlockBarrelThaumium extends BlockContainer {
 							ItemStack filled = FluidContainerRegistry.fillFluidContainer(available, item);
 							FluidStack liquid = FluidContainerRegistry.getFluidForFilledItem(filled);
 							if(liquid != null) {
-
 								if(item.stackSize > 1) {
 									if(!player.inventory.addItemStackToInventory(filled)) {
 										return false;
@@ -153,14 +141,12 @@ public class BlockBarrelThaumium extends BlockContainer {
 								} else {
 									player.inventory.setInventorySlotContents(player.inventory.currentItem, filled);
 								}
-
 								barrel.drain(ForgeDirection.DOWN, liquid.amount, true);
 								return true;
 							}
 						}
 					}
 				}
-
 				//XXX BARREL RECIPES!
 				if(item != null) {
 					if(barrel.getMode() == BarrelMode.FLUID && barrel.isFull()) {
@@ -170,13 +156,11 @@ public class BlockBarrelThaumium extends BlockContainer {
 								barrel.setMode(BarrelMode.CLAY);
 								useItem(player);
 							}
-
 							//Milk + Water = Slime!
 							if(exnihilo.data.ModData.ALLOW_BARREL_RECIPE_SLIME && item.getItem() == Items.milk_bucket) {
 								barrel.setMode(BarrelMode.MILKED);
 								useItem(player);
 							}
-
 							//Mushroom stew + Water = Witch Water!
 							if(exnihilo.data.ModData.ALLOW_BARREL_RECIPE_SOULSAND && (item.getItem() == Items.mushroom_stew || item.getItem() == ENItems.Spores)) {
 								barrel.setMode(BarrelMode.SPORED);
@@ -186,40 +170,33 @@ public class BlockBarrelThaumium extends BlockContainer {
 								barrel.setMode(BarrelMode.BLIZZ_COOKING);
 								useItem(player);
 							}
-
 						}
-
 						if(barrel.fluid.getFluidID() == FluidRegistry.LAVA.getID()) {
 							//Redstone + Lava = Netherrack
 							if(exnihilo.data.ModData.ALLOW_BARREL_RECIPE_NETHERRACK && item.getItem() == Items.redstone) {
 								barrel.setMode(BarrelMode.NETHERRACK);
 								useItem(player);
 							}
-
 							//Glowstone + Lava = End Stone
 							if(exnihilo.data.ModData.ALLOW_BARREL_RECIPE_ENDSTONE && item.getItem() == Items.glowstone_dust) {
 								barrel.setMode(BarrelMode.ENDSTONE);
 								useItem(player);
 							}
-
 							if(exnihilo.data.ModData.ALLOW_BARREL_RECIPE_ENDSTONE && item.getItem() == Items.glowstone_dust) {
 								barrel.setMode(BarrelMode.ENDSTONE);
 								useItem(player);
 							}
-
 							//Angry doll + Lava = Blaze!
 							if(exnihilo.data.ModData.ALLOW_BARREL_RECIPE_BLAZE_RODS && item.getItem() == ENItems.DollAngry) {
 								barrel.setMode(BarrelMode.BLAZE_COOKING);
 								useItem(player);
 							}
-
 							if(Loader.isModLoaded("appliedenergistics2") && item.getItem() == AE2.certusDust) {
 								barrel.block = AE2.skyStone;
 								barrel.setMode(BarrelMode.BLOCK);
 								useItem(player);
 							}
 						}
-
 						if(barrel.fluid.getFluidID() == Fluids.fluidWitchWater.getID()) {
 							//Witch water + Sand = Soul Sand
 							if(exnihilo.data.ModData.ALLOW_BARREL_RECIPE_SOULSAND && item.getItem() == Item.getItemFromBlock(Blocks.sand)) {
@@ -227,37 +204,29 @@ public class BlockBarrelThaumium extends BlockContainer {
 								barrel.resetColor();
 								useItem(player);
 							}
-
 							if(item.getItem() == Item.getItemFromBlock(Blocks.obsidian)) {
 								barrel.setMode(BarrelMode.OBSIDIANTOTEM);
 								barrel.resetColor();
 								useItem(player);
-
 							}
-
 							if(ExAstris.Data.ModData.allowBeeTrapInfused && item.getItem() == Item.getItemFromBlock(ENBlocks.BeeTrap)) {
 								barrel.setMode(BarrelMode.BEEINFUSED);
 								barrel.resetColor();
 								useItem(player);
-
 							}
-
 							if(item.getItem() == ExAstrisItem.DollThaumic) {
 								barrel.setMode(BarrelMode.PECK_COOKING);
 								useItem(player);
 							}
-
 							if(exnihilo.data.ModData.ALLOW_BARREL_RECIPE_ENDER_PEARLS && item.getItem() == ENItems.DollCreepy) {
 								barrel.setMode(BarrelMode.ENDER_COOKING);
 								useItem(player);
 							}
-
 							if(exnihilo.data.ModData.ALLOW_BARREL_RECIPE_DARK_OAK && Block.getBlockFromItem(item.getItem()) == Blocks.sapling && item.getMetadata() == 0) {
 								barrel.setMode(BarrelMode.DARKOAK);
 								useItem(player);
 							}
 						}
-
 						Fluid seedOil = FluidRegistry.getFluid("seedoil");
 						if(seedOil != null && barrel.fluid.getFluidID() == seedOil.getID() && item.getItem() == Item.getItemFromBlock(ENBlocks.BeeTrap)) {
 							barrel.setMode(BarrelMode.BEETRAP);
@@ -273,7 +242,6 @@ public class BlockBarrelThaumium extends BlockContainer {
 
 	public void useItem(EntityPlayer player) {
 		if(!player.capabilities.isCreativeMode) {
-
 			ItemStack item = player.inventory.mainInventory[player.inventory.currentItem];
 			//Special cases
 			if(item.getItem() == Items.milk_bucket) {
@@ -284,7 +252,6 @@ public class BlockBarrelThaumium extends BlockContainer {
 			//Generic case
 			else {
 				item.stackSize -= 1;
-
 				if(item.stackSize == 0) {
 					item = null;
 				}
@@ -335,11 +302,9 @@ public class BlockBarrelThaumium extends BlockContainer {
 	@Override
 	public int getLightValue(IBlockAccess world, int x, int y, int z) {
 		TileEntityBarrelThaumium te = (TileEntityBarrelThaumium) world.getTileEntity(x, y, z);
-
 		if(te != null) {
 			return te.getLightLevel();
 		}
 		return 0;
 	}
-
 }

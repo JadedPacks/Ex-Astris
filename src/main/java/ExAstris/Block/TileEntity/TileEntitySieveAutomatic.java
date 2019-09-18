@@ -31,35 +31,22 @@ import java.util.Iterator;
 import java.util.Random;
 
 public class TileEntitySieveAutomatic extends TileEntity implements IEnergyHandler, ISidedInventory {
-	public EnergyStorage storage = new EnergyStorage(64000);
-	private int energyPerCycle = ModData.sieveAutomaticBaseEnergy;
 	private static final float MIN_RENDER_CAPACITY = 0.70f;
 	private static final float MAX_RENDER_CAPACITY = 0.9f;
-	private float PROCESSING_INTERVAL;// = 0.005f; //was 0.005
 	private static final int UPDATE_INTERVAL = 20;
-	private int speedLevel;
 	private static Random rand = new Random();
-
-	protected ItemStack[] inventory; //Slots 21 and 22 are the upgrades!
-
+	public EnergyStorage storage = new EnergyStorage(64000);
 	public Block content;
 	public int contentMeta = 0;
-
-	private float volume = 0;
 	public SieveMode mode = SieveMode.EMPTY;
-
+	protected ItemStack[] inventory; //Slots 21 and 22 are the upgrades!
+	private int energyPerCycle = ModData.sieveAutomaticBaseEnergy;
+	private float PROCESSING_INTERVAL;// = 0.005f; //was 0.005
+	private int speedLevel;
+	private float volume = 0;
 	private int timer = 0;
 	private boolean update = false;
 	private boolean particleMode = false;
-
-	public enum SieveMode {
-		EMPTY(0),
-		FILLED(1);
-
-		SieveMode(int v) {this.value = v;}
-
-		public int value;
-	}
 
 	public TileEntitySieveAutomatic() {
 		mode = SieveMode.EMPTY;
@@ -79,9 +66,7 @@ public class TileEntitySieveAutomatic extends TileEntity implements IEnergyHandl
 	public void addSievable(Block block, int blockMeta) {
 		this.content = block;
 		this.contentMeta = blockMeta;
-
 		this.mode = SieveMode.FILLED;
-
 		volume = 1.0f;
 		worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 	}
@@ -91,18 +76,14 @@ public class TileEntitySieveAutomatic extends TileEntity implements IEnergyHandl
 		if(worldObj.isRemote && particleMode) {
 			spawnFX(content, contentMeta);
 		}
-
 		timer++;
 		if(timer >= UPDATE_INTERVAL) {
 			timer = 0;
 			disableParticles();
-
 			if(update) {
 				update();
 			}
 		}
-
-
 		//addd
 		if(storage.getEnergyStored() > getEffectiveEnergy()) {
 			if(mode == SieveMode.EMPTY && inventory[0] != null) {
@@ -116,15 +97,12 @@ public class TileEntitySieveAutomatic extends TileEntity implements IEnergyHandl
 				ProcessContents();
 			}
 		}
-
 		//adddend
 	}
 
 	public void ProcessContents() {
-
 		volume -= getEffectiveSpeed();
 		storage.extractEnergy(getEffectiveEnergy(), false);
-
 		if(volume <= 0) {
 			mode = SieveMode.EMPTY;
 			//give rewards!
@@ -140,7 +118,6 @@ public class TileEntitySieveAutomatic extends TileEntity implements IEnergyHandl
 						} else {
 							fortuneAmount = 1;
 						}
-
 						for(int fortuneCounter = 0; fortuneCounter < fortuneAmount; fortuneCounter++) {
 							int size = getSizeInventory() - 2;
 							int inventoryIndex = 0;
@@ -151,7 +128,6 @@ public class TileEntitySieveAutomatic extends TileEntity implements IEnergyHandl
 								} else {
 									fortuneAmount2 = 1;
 								}
-
 								for(int fortuneCounter2 = 0; fortuneCounter2 < fortuneAmount2; fortuneCounter2++) {
 									for(int i = 1; i < size; i++) {
 										if(inventory[i] == null) {
@@ -164,8 +140,6 @@ public class TileEntitySieveAutomatic extends TileEntity implements IEnergyHandl
 											}
 										}
 									}
-
-
 									if(inventoryIndex != 0) {
 										if(inventory[inventoryIndex] != null) {
 											inventory[inventoryIndex] = new ItemStack(reward.item, (inventory[inventoryIndex].stackSize + 1), reward.meta);
@@ -174,14 +148,11 @@ public class TileEntitySieveAutomatic extends TileEntity implements IEnergyHandl
 										}
 									} else {
 										EntityItem entityitem = new EntityItem(worldObj, (double) xCoord + 0.5D, (double) yCoord + 1.5D, (double) zCoord + 0.5D, new ItemStack(reward.item, 1, reward.meta));
-
 										double f3 = 0.05F;
 										entityitem.motionX = worldObj.rand.nextGaussian() * f3;
 										entityitem.motionY = (0.2d);
 										entityitem.motionZ = worldObj.rand.nextGaussian() * f3;
-
 										worldObj.spawnEntityInWorld(entityitem);
-
 									}
 								}
 							}
@@ -192,7 +163,6 @@ public class TileEntitySieveAutomatic extends TileEntity implements IEnergyHandl
 		} else {
 			particleMode = true;
 		}
-
 		update = true;
 	}
 
@@ -200,14 +170,8 @@ public class TileEntitySieveAutomatic extends TileEntity implements IEnergyHandl
 	private void spawnFX(Block block, int blockMeta) {
 		if(block != null) {
 			IIcon icon = block.getIcon(0, blockMeta);
-
 			for(int x = 0; x < 4; x++) {
-				ParticleSieve dust = new ParticleSieve(worldObj,
-					xCoord + 0.8d * worldObj.rand.nextFloat() + 0.15d,
-					yCoord + 0.69d,
-					zCoord + 0.8d * worldObj.rand.nextFloat() + 0.15d,
-					0.0d, 0.0d, 0.0d, icon);
-
+				ParticleSieve dust = new ParticleSieve(worldObj, xCoord + 0.8d * worldObj.rand.nextFloat() + 0.15d, yCoord + 0.69d, zCoord + 0.8d * worldObj.rand.nextFloat() + 0.15d, 0.0d, 0.0d, 0.0d, icon);
 				Minecraft.getMinecraft().effectRenderer.addEffect(dust);
 			}
 		}
@@ -236,12 +200,10 @@ public class TileEntitySieveAutomatic extends TileEntity implements IEnergyHandl
 	@Override
 	public void readFromNBT(NBTTagCompound compound) {
 		super.readFromNBT(compound);
-
 		switch(compound.getInteger("mode")) {
 			case 0:
 				mode = SieveMode.EMPTY;
 				break;
-
 			case 1:
 				mode = SieveMode.FILLED;
 				break;
@@ -256,14 +218,11 @@ public class TileEntitySieveAutomatic extends TileEntity implements IEnergyHandl
 		particleMode = compound.getBoolean("particles");
 		this.PROCESSING_INTERVAL = compound.getFloat("speed");
 		storage.readFromNBT(compound);
-
 		NBTTagList nbttaglist = compound.getTagList("Items", 10);
 		this.inventory = new ItemStack[this.getSizeInventory()];
-
 		for(int i = 0; i < nbttaglist.tagCount(); ++i) {
 			NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
 			byte b0 = nbttagcompound1.getByte("Slot");
-
 			if(b0 >= 0 && b0 < this.inventory.length) {
 				this.inventory[b0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
 			}
@@ -285,9 +244,7 @@ public class TileEntitySieveAutomatic extends TileEntity implements IEnergyHandl
 		compound.setBoolean("particles", particleMode);
 		compound.setFloat("speed", PROCESSING_INTERVAL);
 		storage.writeToNBT(compound);
-
 		NBTTagList nbttaglist = new NBTTagList();
-
 		for(int i = 0; i < this.inventory.length; ++i) {
 			if(this.inventory[i] != null) {
 				NBTTagCompound nbttagcompound1 = new NBTTagCompound();
@@ -296,7 +253,6 @@ public class TileEntitySieveAutomatic extends TileEntity implements IEnergyHandl
 				nbttaglist.appendTag(nbttagcompound1);
 			}
 		}
-
 		compound.setTag("Items", nbttaglist);
 	}
 
@@ -304,7 +260,6 @@ public class TileEntitySieveAutomatic extends TileEntity implements IEnergyHandl
 	public Packet getDescriptionPacket() {
 		NBTTagCompound tag = new NBTTagCompound();
 		this.writeToNBT(tag);
-
 		return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, this.blockMetadata, tag);
 	}
 
@@ -313,18 +268,16 @@ public class TileEntitySieveAutomatic extends TileEntity implements IEnergyHandl
 		NBTTagCompound tag = pkt.getNbtCompound();
 		this.readFromNBT(tag);
 	}
-	// Thermal Expansion !!!
 
 	/* IEnergyHandler */
 	@Override
 	public boolean canConnectEnergy(ForgeDirection from) {
-
 		return true;
 	}
+	// Thermal Expansion !!!
 
 	@Override
 	public int receiveEnergy(ForgeDirection from, int maxReceive, boolean simulate) {
-
 		return storage.receiveEnergy(maxReceive, simulate);
 	}
 
@@ -335,13 +288,11 @@ public class TileEntitySieveAutomatic extends TileEntity implements IEnergyHandl
 
 	@Override
 	public int getEnergyStored(ForgeDirection from) {
-
 		return storage.getEnergyStored();
 	}
 
 	@Override
 	public int getMaxEnergyStored(ForgeDirection from) {
-
 		return storage.getMaxEnergyStored();
 	}
 
@@ -388,7 +339,6 @@ public class TileEntitySieveAutomatic extends TileEntity implements IEnergyHandl
 		if(stack != null && stack.stackSize > getInventoryStackLimit()) {
 			stack.stackSize = getInventoryStackLimit();
 		}
-
 	}
 
 	@Override
@@ -412,10 +362,12 @@ public class TileEntitySieveAutomatic extends TileEntity implements IEnergyHandl
 	}
 
 	@Override
-	public void openChest() {}
+	public void openChest() {
+	}
 
 	@Override
-	public void closeChest() {}
+	public void closeChest() {
+	}
 
 	@Override
 	public boolean isItemValidForSlot(int slot, ItemStack item) {
@@ -487,5 +439,15 @@ public class TileEntitySieveAutomatic extends TileEntity implements IEnergyHandl
 
 	public void setEnergyStored(int energy) {
 		this.storage.setEnergyStored(energy);
+	}
+
+	public enum SieveMode {
+		EMPTY(0),
+		FILLED(1);
+		public int value;
+
+		SieveMode(int v) {
+			this.value = v;
+		}
 	}
 }

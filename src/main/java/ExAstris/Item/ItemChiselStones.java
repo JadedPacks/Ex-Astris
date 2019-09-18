@@ -14,7 +14,6 @@ import net.minecraft.util.IIcon;
 import java.util.List;
 
 public class ItemChiselStones extends ItemStone {
-
 	public IIcon[] icons = new IIcon[2];
 
 	public ItemChiselStones() {
@@ -32,7 +31,6 @@ public class ItemChiselStones extends ItemStone {
 		return ModData.ID + "." + ItemData.CHISEL_STONE_KEY;
 	}
 
-
 	@SuppressWarnings({"unchecked", "rawtypes"})
 	@SideOnly(Side.CLIENT)
 	@Override
@@ -46,12 +44,10 @@ public class ItemChiselStones extends ItemStone {
 	public void registerIcons(IIconRegister register) {
 		icons[0] = register.registerIcon(ModData.TEXTURE_LOCATION + ":StoneMarble");
 		icons[1] = register.registerIcon(ModData.TEXTURE_LOCATION + ":StoneLimestone");
-
 	}
 
 	@Override
 	public IIcon getIconFromDamage(int meta) {
 		return icons[meta];
 	}
-
 }

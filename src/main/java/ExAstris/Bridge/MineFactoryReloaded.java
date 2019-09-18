@@ -19,11 +19,9 @@ public class MineFactoryReloaded {
 	}
 
 	public static void addCompostRegistry() {
-
 		CompostRegistry.register(GameRegistry.findItem("MineFactoryReloaded", "rubberwood.sapling"), 0, 0.125F, ColorRegistry.color("rubberwood"));
 		CompostRegistry.register(GameRegistry.findItem("MineFactoryReloaded", "rubberwood.sapling"), 1, 0.125F, ColorRegistry.color("rubberwood"));
 		CompostRegistry.register(GameRegistry.findItem("MineFactoryReloaded", "rubberwood.leaves"), 0, 0.125F, ColorRegistry.color("rubberwood"));
 		CompostRegistry.register(GameRegistry.findItem("MineFactoryReloaded", "rubberwood.leaves"), 1, 0.125F, ColorRegistry.color("rubberwood"));
-
 	}
 }
