@@ -20,12 +20,6 @@ apply plugin: 'forge'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-new File('gradle.properties').withReader {
-	def prop = new Properties()
-	prop.load(it)
-	project.ext.config = new ConfigSlurper().parse prop
-}
-
 version = "1.7.10-1.16-JADED_PATCHED"
 group= "exastris"
 archivesBaseName = "Ex-Astris"

@@ -16,6 +16,8 @@ public class ExAstrisItem {
 	public static Item DollFreezing;
 	public static Item UnchargedNetherStar;
 	public static Item CrookRF;
+	public static Item DollCrimson;
+	public static Item EldritchSpawner;
 	//TConstruct Nether ores
 	public static Item cobaltOreItem;
 	public static Item arditeOreItem;
@@ -53,6 +55,10 @@ public class ExAstrisItem {
 		if(Loader.isModLoaded("Thaumcraft")) {
 			DollThaumic = Thaumcraft.dollThaumic();
 			GameRegistry.registerItem(DollThaumic, ItemData.THAUMIC_DOLL_UNLOCALIZED_NAME);
+			DollCrimson = Thaumcraft.dollCrimson();
+			GameRegistry.registerItem(DollCrimson, ItemData.CRIMSON_DOLL_UNLOCALIZED_NAME);
+			EldritchSpawner = Thaumcraft.eldritchPortalSpawner();
+			GameRegistry.registerItem(EldritchSpawner, ItemData.ELDRITCH_PORTAL_SPAWNER_UNLOCALIZED_NAME);
 			//BarrelRecipeRegistry.addMobRecipe(Fluids.fluidWitchWater, new ItemStack(DollThaumic), Thaumcraft.entityPech(), "portal", )
 			HammerThaumium = Thaumcraft.hammerThaumic();
 			GameRegistry.registerItem(HammerThaumium, ItemData.HAMMER_THAUMIUM_UNLOCALIZED_NAME);

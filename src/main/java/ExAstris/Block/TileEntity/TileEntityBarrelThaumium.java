@@ -408,6 +408,46 @@ public class TileEntityBarrelThaumium extends TileEntity implements IFluidHandle
 					}
 				}
 				break;
+			case CRIMSON_COOKING:
+				timer++;
+				if(worldObj.isRemote && worldObj.rand.nextInt(20) == 0) {
+					float f = (worldObj.rand.nextFloat() - 0.5F) * 0.2F;
+					float f1 = (worldObj.rand.nextFloat() - 0.5F) * 0.2F;
+					float f2 = (worldObj.rand.nextFloat() - 0.5F) * 0.2F;
+					this.worldObj.spawnParticle("witchMagic", xCoord + (worldObj.rand.nextFloat() * 0.6) + 0.2d, yCoord + 1, zCoord + (worldObj.rand.nextFloat() * 0.6) + 0.2d, f, f1, f2);
+				}
+				if(isDone()) {
+					setMode(BarrelMode.CRIMSON);
+					timer = 0;
+				}
+				break;
+			case CRIMSON:
+				if(worldObj.isRemote && worldObj.rand.nextInt(5) == 0) {
+					//spawn ender particles
+					float f = (worldObj.rand.nextFloat() - 0.5F) * 0.2F;
+					float f1 = (worldObj.rand.nextFloat() - 0.5F) * 0.2F;
+					float f2 = (worldObj.rand.nextFloat() - 0.5F) * 0.2F;
+					this.worldObj.spawnParticle("witchMagic", xCoord + (worldObj.rand.nextFloat() * 0.6) + 0.2d, yCoord + 1, zCoord + (worldObj.rand.nextFloat() * 0.6) + 0.2d, f, f1, f2);
+				}
+				if(!worldObj.isRemote && worldObj.difficultySetting.getDifficultyId() > 0) {
+					if(isDone()) {
+						timer = 0;
+						resetBarrel();
+						break;
+					}
+					//Try to spawn enderman, if you can't keep trying.
+					for(int x = -1; x <= 1; x++) {
+						for(int y = -1; y <= 1; y++) {
+							for(int z = -1; z <= 1; z++) {
+								if(worldObj.isAirBlock(xCoord + x, yCoord + y, zCoord + z) && worldObj.isAirBlock(xCoord + x, yCoord + y + 1, zCoord + z) && worldObj.isAirBlock(xCoord + x, yCoord + y + 2, zCoord + z) && worldObj.rand.nextInt(10) == 0 && !isDone()) {
+									timer = MAX_COMPOSTING_TIME;
+									ExAstris.Bridge.Thaumcraft.summonCrimson(worldObj, xCoord + x + 0.5d, yCoord + y, zCoord + z + 0.5d);
+								}
+							}
+						}
+					}
+				}
+				break;
 			default:
 				break;
 		}
@@ -625,6 +665,12 @@ public class TileEntityBarrelThaumium extends TileEntity implements IFluidHandle
 				break;
 			case 28:
 				setMode(BarrelMode.MAGICAL_MOB);
+				break;
+			case 29:
+				setMode(BarrelMode.CRIMSON_COOKING);
+				break;
+			case 30:
+				setMode(BarrelMode.CRIMSON);
 				break;
 		}
 		volume = compound.getFloat("volume");
@@ -922,6 +968,9 @@ public class TileEntityBarrelThaumium extends TileEntity implements IFluidHandle
 						if(item == ExAstrisItem.DollThaumic) {
 							setMode(BarrelMode.PECK_COOKING);
 						}
+						if(item == ExAstrisItem.DollCrimson) {
+							setMode(BarrelMode.CRIMSON_COOKING);
+						}
 					}
 					Fluid seedOil = FluidRegistry.getFluid("seedoil");
 					if(seedOil != null && fluid.getFluidID() == seedOil.getID()) {
@@ -1037,6 +1086,9 @@ public class TileEntityBarrelThaumium extends TileEntity implements IFluidHandle
 				if(item == ExAstrisItem.DollThaumic) {
 					return true;
 				}
+				if(item == ExAstrisItem.DollCrimson) {
+					return true;
+				}
 				if(Block.getBlockFromItem(item) == ExAstrisBlock.BeeTrapInfused) {
 					return true;
 				}
@@ -1082,7 +1134,9 @@ public class TileEntityBarrelThaumium extends TileEntity implements IFluidHandle
 		BLIZZ(25, ExtractMode.None),
 		RECIPE(26, ExtractMode.Always),
 		MOB(27, ExtractMode.None),
-		MAGICAL_MOB(28, ExtractMode.None);
+		MAGICAL_MOB(28, ExtractMode.None),
+		CRIMSON_COOKING(29, ExtractMode.None),
+		CRIMSON(30, ExtractMode.None);
 		public int value;
 		public ExtractMode canExtract;
 

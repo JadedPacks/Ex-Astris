@@ -77,6 +77,10 @@ public class ModData {
 	public static boolean allowHammerThaumium = true;
 	public static String allowUnchargedNetherstarKey = "unchargedNetherStar";
 	public static boolean allowUnchargedNetherstar = true;
+	public static String allowDollCrimsonKey = "crimsonDoll";
+	public static boolean allowDollCrimson = true;
+	public static String primordialPearlChanceKey = "primordialPearl";
+	public static int primordialPearlChance = 512;
 	//BRIDGES
 	public static String allowMFRCompostKey = "MFRCompost";
 	public static boolean allowMFRCompost = true;
@@ -162,6 +166,8 @@ public class ModData {
 		allowHammerThaumium = config.get(categoryThaumcraft, allowHammerThaumiumKey, allowHammerThaumium, "Enable Thaumium Hammer").getBoolean();
 		allowThaumcraftResearch = config.get(categoryThaumcraft, allowThaumcraftResearchKey, allowThaumcraftResearch, "Enable Thaumcraft Research").getBoolean();
 		allowThaumcraftHeat = config.get(categoryThaumcraft, allowThaumcraftHeatKey, allowThaumcraftHeat, "Add Thaumcraft Items as heat source for Crucible etc").getBoolean();
+		allowDollCrimson = config.get(categoryThaumcraft, allowDollCrimsonKey, allowDollCrimson, "Enable Crimson Doll").getBoolean();
+		primordialPearlChance = config.get(categoryThaumcraft, primordialPearlChanceKey, primordialPearlChance).getInt();
 		//Magic Bees
 		allowBeeTrapInfused = config.get(categoryMagicBees, allowBeeTrapInfusedKey, allowBeeTrapInfused, "Enable Mana Infused Hives").getBoolean();
 		//Ex-Astris

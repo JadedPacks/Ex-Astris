@@ -56,7 +56,7 @@ public class BlockBarrelThaumium extends BlockContainer {
 	}
 
 	@Override
-	@SuppressWarnings({"rawtypes", "unchecked"})
+	@SuppressWarnings({"unchecked"})
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(Item item, CreativeTabs tabs, List subItems) {
 		subItems.add(new ItemStack(item, 1, 0));
@@ -101,10 +101,6 @@ public class BlockBarrelThaumium extends BlockContainer {
 								}
 							}
 						}
-						//						else
-						//						{
-						//							System.out.println("Item not registered for compost: " + item.itemID + ":" + item.getMetadata());
-						//						}
 					}
 				}
 				//FLUIDS!
@@ -216,6 +212,10 @@ public class BlockBarrelThaumium extends BlockContainer {
 							}
 							if(item.getItem() == ExAstrisItem.DollThaumic) {
 								barrel.setMode(BarrelMode.PECK_COOKING);
+								useItem(player);
+							}
+							if(item.getItem() == ExAstrisItem.DollCrimson) {
+								barrel.setMode(BarrelMode.CRIMSON_COOKING);
 								useItem(player);
 							}
 							if(exnihilo.data.ModData.ALLOW_BARREL_RECIPE_ENDER_PEARLS && item.getItem() == ENItems.DollCreepy) {
