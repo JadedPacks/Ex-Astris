@@ -79,7 +79,7 @@ public class Thaumcraft {
 				new ResearchItem("EXASTRIS_DOLLTHAUMIC", "EXASTRIS_THAUM", new AspectList().add(Aspect.SOUL, 10).add(Aspect.GREED, 10).add(Aspect.MAGIC, 10), 2, -2, 0, new ItemStack(ExAstrisItem.DollThaumic, 1, 0)).setPages(new ResearchPage("exastris.page.EXASTRISTHAUM.4"), new ResearchPage((CrucibleRecipe) ConfigResearch.recipes.get("exastrisdollthaumic"))).setConcealed().setParents("EXASTRIS_BARRELTHAUMIUM").registerResearchItem();
 			}
 			if(ModData.allowDollCrimson) {
-				new ResearchItem("EXASTRIS_DOLLCRIMSON", "EXASTRIS_THAUM", new AspectList().add(Aspect.SOUL, 10).add(Aspect.ELDRITCH, 10).add(Aspect.MAGIC, 10), 2, -1, 1, new ItemStack(ExAstrisItem.DollCrimson, 1, 0)).setPages(new ResearchPage("exastris.page.EXASTRISTHAUM.15"), new ResearchPage((CrucibleRecipe) ConfigResearch.recipes.get("exastricdollcrimson"))).setConcealed().setParents("EXASTRIS_BARRELTHAUMIUM").setParentsHidden("ELDRITCHMAJOR").setSecondary().registerResearchItem();
+				new ResearchItem("EXASTRIS_DOLLCRIMSON", "EXASTRIS_THAUM", new AspectList().add(Aspect.SOUL, 10).add(Aspect.ELDRITCH, 10).add(Aspect.MAGIC, 10), 2, -1, 1, new ItemStack(ExAstrisItem.DollCrimson, 1, 0)).setPages(new ResearchPage("exastris.page.EXASTRISTHAUM.15"), new ResearchPage((CrucibleRecipe) ConfigResearch.recipes.get("exastrisdollcrimson"))).setConcealed().setParents("EXASTRIS_BARRELTHAUMIUM").setParentsHidden("ELDRITCHMAJOR").setSecondary().registerResearchItem();
 				ThaumcraftApi.addWarpToResearch("EXASTRIS_DOLLCRIMSON", 4);
 			}
 			if(Loader.isModLoaded("MagicBees") && ModData.allowBeeTrapInfused) {
